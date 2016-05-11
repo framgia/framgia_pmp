@@ -10,6 +10,11 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require dhtmlx/skins/dhtmlxgrid_dhx_web
+ *= require dhtmlx/skins/dhtmlxtoolbar_dhx_web
+ *= require dhtmlx/dhtmlx_core
+ *= require dhtmlx/dhtmlxgrid_reset
+ *= require dhtmlx/dhtmlxspreadsheet
+ *= require dhtmlx/dhtmlxspreadsheet_dhx_web
  */
