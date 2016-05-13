@@ -13,10 +13,11 @@ gem "devise"
 gem "config"
 gem "i18n-js"
 gem "faker"
-gem "bootstrap-sass"
 gem "bootstrap-datepicker-rails"
 gem "cancancan", "~> 1.10"
 gem "select2-rails"
+gem "bootstrap-sass", "~> 3.2.0"
+gem "sprockets-rails", "2.0.1"
 
 group :development, :test do
   gem "byebug"

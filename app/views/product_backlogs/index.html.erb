@@ -1,0 +1,13 @@
+<%= render "shared/category_tab", project: @project, active_tab: Settings.
+  tabs.project_backlog %>
+<div class="col-md-12" id="has_product_backlog_api">
+</div>
+  <br>
+  <div class="col-md-6 col-md-offset-3">
+    <div id="product_backlog_input" data-load-api=
+      "<%= api_product_backlogs_path %>.json?project_id=<%= @project.id %>"
+      data-update-api="<%= product_backlog_updates_path %>"></div>
+    <button class="btn btn-xs btn-info" id="add_more_pb">
+      <span class="glyphicon glyphicon-plus"></span></button>
+  </div>
+</div>

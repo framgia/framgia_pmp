@@ -1,0 +1,11 @@
+#product_backlog_input {
+  width: 587px;
+  height: 300px;
+  overflow: hidden;
+  cursor: default;
+  background-color: white;
+
+  td > .btn-xs, .btn-group-xs > .btn {
+    margin: 3px 0px;
+  }
+}
