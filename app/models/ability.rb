@@ -3,9 +3,12 @@ class Ability
 
   def initialize user
     user ||= User.new
-    if user.manager? || user.leader?
-      can :manage, Project 
+    if user.member?
+      can [:show, :update], User, id: user.id
+    else
+      can :manage, Project
       can :manage, Sprint
+      can :manage, User
     end
   end
 end

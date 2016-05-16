@@ -3,9 +3,13 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   include ApplicationHelper
-  
+
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:alert] = exception.message
+    if user_signed_in?
+      redirect_to root_url, alert: exception.message
+    else
+      redirect_to new_user_session_path, alert: t("flashs.user.mustlogin")
+    end
   end
 
   private

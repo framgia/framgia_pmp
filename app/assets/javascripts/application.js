@@ -39,7 +39,7 @@
 //= require dhtmlx/dhtmlxsh_undo
 //= require spreadsheet
 
-$(document).ready(function(){
+$(document).on("page:change", function(){
   $(".datepicker").datepicker({
     format: I18n.t("date.format")
   });

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, only: :session
+  devise_for :users, only: [:session, :password]
   root "projects#index"
 
   resources :sprints
@@ -15,4 +15,7 @@ Rails.application.routes.draw do
       resources :sprints
     end
   end
+
+  resources :synchronizes, only: [:index, :create]
+  resources :users, except: [:new, :create]
 end

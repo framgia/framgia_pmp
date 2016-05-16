@@ -3,8 +3,11 @@ class User < ActiveRecord::Base
   has_many :time_logs
   has_many :activities
   has_many :projects, foreign_key: :manager_id
+  has_many :sprints, through: :assignees
   devise :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable
+
+  USER_ATTRIBUTES_PARAMS = [:name, :email, :password, :password_confirmation]
 
   enum role: [:member, :leader, :manager]
 

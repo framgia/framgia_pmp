@@ -1,7 +1,6 @@
 class Admin::SprintsController < ApplicationController
-  # load_and_authorize_resource
-  # load_and_authorize_resource :project
   before_action :load_project
+  before_action :load_assignee, only: [:new, :edit]
   before_action :load_sprint, except: [:new, :create]
 
   def new
@@ -40,6 +39,10 @@ class Admin::SprintsController < ApplicationController
   end
 
   private
+  def load_assignee
+    @assignees = @project.assignees.not_assign_sprint
+  end
+
   def sprint_params
     params.require(:sprint).permit Sprint::SPRINT_ATTRIBUTES_PARAMS
   end

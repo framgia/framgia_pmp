@@ -5,6 +5,7 @@ en:
   sessions:
     login: "Login"
     logout: "Logout"
+    forgot: "(forgot password)"
   projects:
     title: "List project"
     show:
@@ -39,6 +40,8 @@ en:
     synchronize: "Synchronize"
     synchronizing: "Synchronizing..."
     new: "New"
+    send: "Send Mail"
+    change_pass: "Change Password"
   errors:
     update: "Update"
   errors:
@@ -63,4 +66,7 @@ en:
   layouts:
     synchronize: "Synchonize Data"
     login_hr: "Login HR System"
-
+    update_user: "Update your profile"
+    new_pass: "New Password"
+    password_confirmation: "Confirm new password"
+    forgot_pass: "Forgot your password?"
