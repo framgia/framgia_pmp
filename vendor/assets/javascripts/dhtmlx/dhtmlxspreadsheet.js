@@ -1081,7 +1081,7 @@ dhtmlxSpreadSheet.prototype = {
 					self.setValue(cell.row, cell.col, cell.text, cell.calc);
 				}
 			}
-		}, this, "ajax");
+		}, this, "ajax", "PATCH");
 	},
 
 	export_to: function(type) {
