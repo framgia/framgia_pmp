@@ -1,10 +1,11 @@
-$(document).ready(function() {
+$(document).on("page:change", function() {
+  var sprint_id = $("#spint_id").data("sprint");
+  var link = "/api/sprints/" + sprint_id
   cfg = {
     sheet: "111",
     parent: "gridbox",
-    dhx_rel_path: "/api/sprints/1"
+    dhx_rel_path: link
   }
-
   /*! INITIALIZATION */
   var dhx_sh;
   function onload_func() {

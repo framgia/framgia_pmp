@@ -71,6 +71,10 @@ function eXcell_edsh(cell){
 		return this.cell.getAttribute('real_value');
 	};
 
+	this.getDataValue = function(field) {
+		return this.cell.getAttribute('data-' + field);
+	}
+
 	this.getFormattedValue = function() {
 		return this.cell.getAttribute('formatted_value');
 	};
@@ -128,6 +132,10 @@ function eXcell_edsh(cell){
 		if (this.dont_take_care === true) return false;
 		this.setCValue(val, this.getRealValue());
 	};
+
+	this.setHtmlData = function(data, value) {
+		this.cell.setAttribute('data-' + data, value);
+	}
 }
 eXcell_edsh.prototype=new eXcell_edtxt;
 eXcell_rotxt.prototype.getRealValue = eXcell_rotxt.prototype.getValue;

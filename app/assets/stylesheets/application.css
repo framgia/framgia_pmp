@@ -16,10 +16,7 @@
  *= require bootstrap-datepicker
  *= require select2
  *= require select2-bootstrap
- *= require dhtmlx/skins/dhtmlxgrid_dhx_web
- *= require dhtmlx/skins/dhtmlxtoolbar_dhx_web
  *= require dhtmlx/dhtmlx_core
- *= require dhtmlx/dhtmlxgrid_reset
  *= require dhtmlx/dhtmlxspreadsheet
  *= require skins/dhtmlxgrid_dhx_blue
  *= require admin/work_performances
