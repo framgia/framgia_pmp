@@ -38,14 +38,21 @@ dhtmlxAjax={
 		var t=new dtmlXMLLoaderObject(true);
 		t.async=(arguments.length<3);
 		t.waitCall=callback;
-		t.loadXML(url)
+		t.loadXML(url, "GET")
 		return t;
 	},
 	post:function(url,post,callback){
 		var t=new dtmlXMLLoaderObject(true);
 		t.async=(arguments.length<4);
 		t.waitCall=callback;
-		t.loadXML(url,true,post)
+		t.loadXML(url,"POST",post)
+		return t;
+	},
+	patch:function(url, post, callback){
+		var t=new dtmlXMLLoaderObject(true);
+		t.async=(arguments.length<4);
+		t.waitCall=callback;
+		t.loadXML(url,"PATCH",post)
 		return t;
 	},
 	getSync:function(url){
@@ -186,7 +193,7 @@ dtmlXMLLoaderObject.prototype.loadXMLString=function(xmlString){
   *     @param: postVars - list of vars for post request
   *     @topic: 0
   */
-dtmlXMLLoaderObject.prototype.loadXML=function(filePath, postMode, postVars, rpc){
+dtmlXMLLoaderObject.prototype.loadXML=function(filePath, action, postVars, rpc){
 	if (this.rSeed)
 		filePath+=((filePath.indexOf("?") != -1) ? "&" : "?")+"a_dhx_rSeed="+(new Date()).valueOf();
 	this.filePath=filePath;
@@ -199,14 +206,16 @@ dtmlXMLLoaderObject.prototype.loadXML=function(filePath, postMode, postVars, rpc
 
 	if (this.async)
 		this.xmlDoc.onreadystatechange=new this.waitLoadFunction(this);
-	this.xmlDoc.open(postMode ? "POST" : "GET", filePath, this.async);
+	this.xmlDoc.open(action, filePath, this.async);
 
 	if (rpc){
 		this.xmlDoc.setRequestHeader("User-Agent", "dhtmlxRPC v0.1 ("+navigator.userAgent+")");
 		this.xmlDoc.setRequestHeader("Content-type", "text/xml");
 	}
 
-	else if (postMode)
+	else if (action == "POST")
+		this.xmlDoc.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	else if (action == "PATCH")
 		this.xmlDoc.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
 	this.xmlDoc.setRequestHeader("X-Requested-With","XMLHttpRequest");
