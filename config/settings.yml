@@ -2,3 +2,4 @@ default_locale: "en"
 tabs:
   overview_project: "overview project"
   new_sprint: "new sprint"
+  project_backlog: "project_backlog"

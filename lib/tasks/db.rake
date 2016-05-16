@@ -7,15 +7,16 @@ namespace :db do
     user = Fabricate :user, role: 2, email: "chu.anh.tuan@framgia.com",
       name: "Chu Anh Tuan"
 
-    puts "Success remake data"
+    puts "Creating product backlog"
+    5.times {Fabricate :product_backlog}
 
     puts "create project"
-    10.times do
+    5.times do
       Fabricate :project, manager_id: user.id
     end
 
     puts "create sprint"
-    10.times do
+    2.times do
       puts "create project"
       Fabricate :sprint, project_id: 1
     end
@@ -33,5 +34,7 @@ namespace :db do
     user_hash.each do |key, value|
       user = Fabricate :user, name: key, email: value+"@framgia.com"
     end
+
+    puts "Success remake data"
   end
 end

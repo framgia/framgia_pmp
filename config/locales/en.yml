@@ -70,3 +70,5 @@ en:
     new_pass: "New Password"
     password_confirmation: "Confirm new password"
     forgot_pass: "Forgot your password?"
+  product_backlog:
+    title: "Product Backlog"

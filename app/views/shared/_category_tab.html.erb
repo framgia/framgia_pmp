@@ -4,6 +4,10 @@
       <li role="presentation" class="<%= tab_active Settings.tabs.overview_project, active_tab %>">
         <%= link_to t("projects.overview"), admin_project_path(project) %>
       </li>
+      <li role="presentation" id="pb_tab_show" class="<%= tab_active Settings.tabs.
+        project_backlog, active_tab %>">
+        <%= link_to t("product_backlog.title"), project_product_backlogs_path(project) %>
+      </li>
       <% project.sprints.each do |sprint| %>
         <li role="presentation" class="<%= tab_active sprint.id, active_tab %>">
           <%= link_to sprint.name, admin_project_sprint_path(project, sprint) %></li>
