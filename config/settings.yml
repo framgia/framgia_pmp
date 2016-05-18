@@ -3,3 +3,17 @@ tabs:
   overview_project: "overview project"
   new_sprint: "new sprint"
   project_backlog: "project_backlog"
+sprint:
+  style: "0;0;000000;ffffff;left;none;0"
+  work: 10
+  start_row:
+    user: 3
+    work: 22
+  start_col: 6
+  rows:
+    losthour: 1
+    wh: 2
+    start_date: 17
+    date: 18
+
+

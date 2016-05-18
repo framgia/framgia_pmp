@@ -13,9 +13,7 @@ Rails.application.routes.draw do
       resources :work_performances, except: [:new, :create]
     end
   end
-  namespace :api do
-    resources :sprints
-  end
+
   namespace :admin do
     root "projects#index"
     resources :projects do
@@ -30,6 +28,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: "json"} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :product_backlogs
+      resources :sprints
     end
   end
   resources :invite_users
