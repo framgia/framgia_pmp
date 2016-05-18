@@ -41,7 +41,6 @@
 //= require dhtmlx/dhtmlxsh_undo
 //= require spreadsheet
 //= require dhtmlxcommon
-//= require dhtmlxgrid
 //= require dhtmlxgridcell
 //= require dhtmlxdataprocessor
 

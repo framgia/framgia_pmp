@@ -57,8 +57,15 @@
 				callback(eval('(' + response.xmlDoc.responseText + ')'));
 			});
 		}
-		else if (action == "GET"){
+		else if (action == "GET") {
 			dhtmlxAjax.get(url, function(response) {
+				if (response.xmlDoc.responseText !== '')
+					callback(eval('(' + response.xmlDoc.responseText + ')'));
+			});
+		}
+		else if (action == "PATCH") {
+			dhtmlxAjax.patch(url, params, function(response) {
+				var xx = 0;
 				if (response.xmlDoc.responseText !== '')
 					callback(eval('(' + response.xmlDoc.responseText + ')'));
 			});
