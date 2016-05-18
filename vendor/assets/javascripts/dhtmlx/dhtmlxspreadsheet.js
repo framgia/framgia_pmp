@@ -508,7 +508,8 @@ dhtmlxSpreadSheet.prototype = {
 				row = cells[i].row;
 				value = cells[i].text;
 				var calc = cells[i].calc;
-				self.setValue(row, col, value, calc);
+				var activity = cells[i].activity;
+				self.setValue(row, col, value, calc, activity);
 				var style = cells[i].style;
 				if (style) {
 					self.getCellStyle(row, col).unserialize(style);
@@ -540,13 +541,15 @@ dhtmlxSpreadSheet.prototype = {
 		return url;
 	},
 
-	setValue: function(row, col, formatted, real) {
+	setValue: function(row, col, formatted, real, activity) {
 		row = parseInt(row, 10);
 		col = parseInt(col, 10);
 		if ((row > this.settings.rows)||(col > this.settings.cols)) return;
 		real = (typeof(real) !== 'undefined') ? real : formatted;
 		if (!(this.grid.editor && this.grid.cells(row, col).cell === this.grid.editor.cell))
 			this.grid.cells(row, col).setCValue(real, formatted);
+		if(col === 2)
+			this.grid.cells(row, col).setHtmlData('activity', activity);
 	},
 
 	clearAll: function() {
@@ -1057,7 +1060,8 @@ dhtmlxSpreadSheet.prototype = {
 			rows: [],
 			cols: [],
 			values: [],
-			styles: []
+			styles: [],
+			activities: [],
 		};
 		if (this.stack.length == 0) return;
 		var i = 0;
@@ -1070,6 +1074,7 @@ dhtmlxSpreadSheet.prototype = {
 			style = style.serialize();
 			post.values[i] = value;
 			post.styles[i] = style;
+			post.activities[i] = this.grid.cells(cell.row, 2).getDataValue('activity');
 			i++;
 		}
 		var self = this;
@@ -1081,7 +1086,7 @@ dhtmlxSpreadSheet.prototype = {
 					self.setValue(cell.row, cell.col, cell.text, cell.calc);
 				}
 			}
-		}, this, "ajax");
+		}, this, "ajax", "PATCH");
 	},
 
 	export_to: function(type) {

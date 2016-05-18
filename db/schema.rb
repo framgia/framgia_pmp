@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511084058) do
+ActiveRecord::Schema.define(version: 20160515140129) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "product_backlog_id", limit: 4
@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 20160511084058) do
     t.integer  "spent_time",         limit: 4
     t.integer  "estimate",           limit: 4
     t.integer  "user_id",            limit: 4
-    t.integer  "sprint_id",          limit: 4
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
+
+  add_index "activities", ["sprint_id"], name: "index_activities_on_sprint_id", using: :btree
 
   create_table "assignees", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160511084058) do
     t.integer  "project_id",  limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.date     "start_date"
   end
 
   add_index "sprints", ["project_id"], name: "index_sprints_on_project_id", using: :btree

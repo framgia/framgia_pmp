@@ -16,7 +16,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require product_backlog
-//= require_tree .
 //= require i18n
 //= require i18n/translations
 //= require bootstrap-datepicker/core
@@ -40,9 +39,6 @@
 //= require dhtmlx/dhtmlxsh_selection
 //= require dhtmlx/dhtmlxsh_undo
 //= require spreadsheet
-//= require dhtmlxcommon
-//= require dhtmlxgrid
-//= require dhtmlxgridcell
 //= require dhtmlxdataprocessor
 
 $(document).on("page:change", function(){

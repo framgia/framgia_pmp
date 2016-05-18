@@ -40,6 +40,7 @@ namespace :db do
       "Dao Duy Dat": "dao.duy.dat",
       "Nguyen Dac Truong": "nguyen.dac.truong",
     }
+
     user_hash.each do |key, value|
       user = Fabricate :user, name: key, email: value+"@framgia.com"
     end
@@ -48,11 +49,6 @@ namespace :db do
     User.all.each do |user|
       Fabricate :assignee, user_id: user.id, project_id: Project.first.id,
         sprint_id: Sprint.first.id
-    end
-
-    puts "Creating activities for sprint 1"
-    Sprint.first.assignees.each do |assignee|
-        Fabricate :activity, user_id: assignee.id, sprint_id: Sprint.first.id
     end
 
     puts "Creating phase"
@@ -66,5 +62,9 @@ namespace :db do
     end
 
     puts "Success remake data"
+    puts "Create activities for sprint 1"
+    Sprint.first.assignees.each do |assignee|
+      Fabricate :activity, user_id: assignee.id, sprint_id: Sprint.first.id
+    end
   end
 end
