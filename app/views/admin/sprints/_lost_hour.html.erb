@@ -1,4 +1,4 @@
-<%= form_tag(admin_project_sprint_time_logs_path project, sprint, id: "lost_hour_form") do %>
+<%= form_for [:admin, project, sprint], id: "lost_hour_form" do |f| %>
   <div class="col-md-6 col-md-offset-5">
     <table class="table table-bordered" id="lost_hour_table">
       <tbody>
@@ -14,11 +14,16 @@
               <td><input type="number" disabled class="body_column"></td>
             <% end %>
         </tr>
-        <% assignees.each_with_index do |assignee, column| %>
+
+        <% @sprint.time_logs.group_by(&:assignee).each do |assignee, time_logs| %>
           <tr>
             <td class="assignees_name"><%= assignee.user.name %></td>
-            <% Settings.sprint.default_days.times do |row| %>
-              <td><input name="<%= column + 1 %>-<%= row + 1 %>" type="number"></td>
+            <%= f.fields_for :time_logs, time_logs do |time_log_builder| %>
+              <td>
+                <%= time_log_builder.hidden_field :assignee_id, value: assignee.id %>
+                <%= time_log_builder.text_field :lost_hour, type: :number %>
+                <!-- <input name="<%#= row + 1 %>-<%#= column %>" type="number"> -->
+              </td>
             <% end %>
           </tr>
         <% end %>    

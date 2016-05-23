@@ -22,9 +22,16 @@ class Admin::SprintsController < ApplicationController
   def show
     @activities = @sprint.activities
     @log_works_count = @activities.first.log_works.count
+
+    10.times do |work_date|
+      @sprint.assignees.each do |assignee|
+        @sprint.time_logs.build work_date: (work_date + 1), assignee: assignee
+      end
+    end
   end
 
   def update
+    binding.pry
     if @sprint.update_attributes sprint_params
       flash[:success] = flash_message "updated"
       redirect_to admin_project_sprint_path(@project, @sprint)

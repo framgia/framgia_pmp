@@ -3,7 +3,7 @@ class CreateTimeLogs < ActiveRecord::Migration
     create_table :time_logs do |t|
       t.integer :assignee_id
       t.references :sprint, index: true, foregin: true 
-      t.date :work_date
+      t.integer :work_date
       t.integer :lost_hour
       
       t.timestamps null: false

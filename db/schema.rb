@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20160518032925) do
   create_table "log_works", force: :cascade do |t|
     t.integer  "activity_id",    limit: 4
     t.integer  "remaining_time", limit: 4
-    t.date     "day"
+    t.integer  "day",            limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20160518032925) do
   create_table "time_logs", force: :cascade do |t|
     t.integer  "assignee_id", limit: 4
     t.integer  "sprint_id",   limit: 4
-    t.date     "work_date"
+    t.integer  "work_date",   limit: 4
     t.integer  "lost_hour",   limit: 4
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
