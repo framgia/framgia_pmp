@@ -1,11 +1,12 @@
 #lost_hour_table {
   margin: 10px 5px;
 
-  td {
+  th {
     margin: 0;
     padding: 0;
     min-width: 40px;
     height: 21px;
+    background-color: #366092;
     input {
       display: block;
       padding: 0;
@@ -20,7 +21,7 @@
   }
 
   .header_column {
-    min-width: 160px;
+    width: 35%;
     height: 25px;
     overflow: hidden;
     background-color: #366092;

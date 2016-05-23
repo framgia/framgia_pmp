@@ -27,10 +27,9 @@
       </ul>
     </div>
   </div>
-  <p><%= @sprint.description %></p>
-  <%= render "lost_hour", sprint: @sprint, project: @project,
-    assignees: @sprint.assignees %>
-
-  <%= render "activities" %>
+  <div class="row">
+    <%= render "lost_hour", sprint: @sprint, project: @project,
+      assignees: @sprint.assignees %>
+  </div>
+  <div><%= render "activities" %></div>
 </div>
-
