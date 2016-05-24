@@ -1,17 +1,17 @@
 <%= form_for [:admin, project, sprint], id: "lost_hour_form" do |f| %>
-  <div class="col-md-6 col-md-offset-5">
-    <table class="table table-bordered" id="lost_hour_table">
+  <div class="col-md-7 col-md-offset-5">
+    <table class="table table-bordered" id="lost_hour_table" data-count-col="10">
       <tbody>
         <tr>
-          <td class="header_column"><%= t "lost_hour.lost_hour" %></td>
+          <th class="header_column"><%= t "lost_hour.lost_hour" %></th>
           <% Settings.sprint.default_days.times do %>
-              <td><input type="number" disabled class="body_column"></td>
+              <th><input type="number" disabled class="body_column"></th>
           <% end %>
         </tr>
         <tr>
-          <td class="header_column"><%= t "lost_hour.work_hour" %></td>
+          <th class="header_column"><%= t "lost_hour.work_hour" %></th>
             <% Settings.sprint.default_days.times do %>
-              <td><input type="number" disabled class="body_column"></td>
+              <th><input type="number" disabled class="body_column"></th>
             <% end %>
         </tr>
         <% @sprint.time_logs.group_by(&:assignee).each do |assignee, time_logs| %>
@@ -30,8 +30,8 @@
         <% end %>
       </tbody>
     </table>
-  <div class="col-md-offset-11">
-    <button type="submit" class="btn btn-info"><%= t "lost_hour.save" %></button>
-  </div>
+    <div class="col-md-offset-11">
+      <button type="submit" class="btn btn-info"><%= t "lost_hour.save" %></button>
+    </div>
   </div>
 <% end %>

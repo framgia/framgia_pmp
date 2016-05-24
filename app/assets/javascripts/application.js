@@ -38,4 +38,37 @@ $(document).on("page:change", function(){
     theme: "bootstrap",
     width: '100%'
   });
+
+  $('#add-col').click(function(){
+    var count_col = $('#lost_hour_table').data("countCol");
+    var count_day = $('#lost_hour_table tr:first th').length;
+    var temp = count_col - 1
+    $('#activities').find('tr').each(function(value){
+      switch(value) {
+        case 0:
+          $(this).find('th:last').after('<th class="panel-left">'+ count_day +'</th>');
+          break;
+        case 1:
+          $(this).find('th:last').after('<th class="panel-left log-actual-'
+            + count_col +'"></th>');
+          break;
+        case 2:
+          $(this).find('th:last').after('<th class="panel-left log-estimate-'
+            + count_col +'">'+ $(this).find('th:last').html() +'</th>');
+          break;
+      }
+      var val_pre = $(this).find('td:last input').val();
+      $(this).find('td').last().after('<td class="panel-left"><input type="number"'
+        +'class="log log-' + temp +' row-'+ count_col +'" value="'+ val_pre +'"></td>');
+    });
+    $('#lost_hour_table').find('tr').each(function(value){
+      var html = '';
+      html += '<td><input type="number" name="sprint[time_logs_attributes][';
+      html += count_col;
+      html += '][lost_hour]"></td>';
+      $(this).find('th').last().after('<th></th>');
+      $(this).find('td').last().after(html);
+    });
+    $('#lost_hour_table').data("countCol", count_col + 1);
+  });
 });

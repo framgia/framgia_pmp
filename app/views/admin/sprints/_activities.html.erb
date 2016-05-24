@@ -1,12 +1,21 @@
-<table id="activities" class="table table-bordered" >
-  <tbody>
-    <%= render "header" %>
-    <%= render "rows_input" %>
-  </tbody>
-</table>
-<div class="col-md-12">
-  <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-plus"),
-    "javascript:void(0)", class: "btn btn-primary", id: "load_more", type: "button" %>
+<div class="row">
+  <div class="col-md-11">
+    <table id="activities" class="table table-bordered" id="table-activities">
+      <tbody>
+        <%= render "header" %>
+        <%= render "rows_input" %>
+      </tbody>
+    </table>
+    <div class="col-md-12">
+      <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-plus"),
+        "javascript:void(0)", class: "btn btn-primary", id: "load_more", type: "button" %>
+    </div>
+  </div>
+  <div class="col-md-1">
+    <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-plus"),
+      "javascript:void();", class: "btn btn-primary", id: "add-col", type: "button" %>
+  </div>
 </div>
 
 <%= render "more_rows" %>
+
