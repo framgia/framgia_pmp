@@ -1,0 +1,15 @@
+<% @activities.each do |activity| %>
+  $('tr.activity_' + '<%= activity.id %>').append('<%= j render "log_work_cell", activity: activity %>')
+<% end %>
+
+<% ["master-sprint-working-day", "master-estimate-plan", "actual"].each do |header_class| %>
+  $('tr.' + '<%= header_class %>').append('<%= j render "header_cell", header_class: header_class %>')
+<% end %>
+
+<% @assignees.each do |assignee| %>
+  $('tr.assignee_' + '<%= assignee.id %>').append('<%= j render "log_time_cell", assignee: assignee %>')
+<% end %>
+
+<% ["lost-hour-row", "work-hour"].each do |header_log_time| %>
+  $('tr.' + '<%= header_log_time %>').append('<%= j render "header_log_time", header_log_time: header_log_time %>')
+<% end %>

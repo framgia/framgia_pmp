@@ -27,6 +27,13 @@
         project_backlog, active_tab %>">
         <%= link_to t("product_backlog.title"), project_product_backlogs_path(project) %>
       </li>
+      <% if f %>
+        <li class="pull-right">
+          <div class="col-md-1">
+            <%= f.submit t("buttons.save"), class: "btn btn-success" %>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

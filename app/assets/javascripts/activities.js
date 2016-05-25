@@ -150,4 +150,9 @@ $(document).on('page:change', function(){
   $('.log-actual-0').change(function() {
     setActual(0);
   });
+
+  $("#load_more").click(function() {
+    $("#activities tbody").append($("#more-rows table tbody").children().clone());
+  });
 });
+

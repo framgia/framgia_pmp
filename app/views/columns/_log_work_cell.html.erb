@@ -1,0 +1,9 @@
+<td class="panel-left">
+  <input value="<%= activity.id %>" type="hidden" name="sprint[log_works_attributes][<%= activity.log_works.size + 1 %>][activity_id]"
+    id="sprint_log_works_attributes_<%= activity.log_works.size + 1 %>_activity_id">
+  <input type="hidden" name="sprint[log_works_attributes][<%= activity.log_works.size + 1 %>][day]"
+    id="sprint_log_works_attributes_<%= activity.log_works.size + 1 %>_day">
+  <input type="number" class="log log- row-0 default" value="0"
+    name="sprint[log_works_attributes][<%= activity.log_works.size + 1 %>][remaining_time]"
+    id="sprint_log_works_attributes_<%= activity.log_works.size + 1 %>_remaining_time">
+</td>

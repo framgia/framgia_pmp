@@ -1,8 +1,8 @@
 <%= form_for [:admin, project, sprint], id: "lost_hour_form" do |f| %>
-    <div class="col-md-6" id="burndown_chart">
-    </div>
+  <div class="col-md-6" id="burndown_chart">
+  </div>
   <div class="col-md-6">
-    <table class="table table-bordered" id="lost_hour_table" 
+    <table class="table table-bordered" id="lost_hour_table"
       data-number-assignees="<%= sprint.assignees.size %>"
       data-number-work-day="<%= sprint.work_day %>">
       <tbody>

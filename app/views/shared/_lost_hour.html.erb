@@ -1,4 +1,5 @@
-<%= form_for [project, sprint], id: "lost_hour_form" do |f| %>
+<div class="row">
+  <%= f.hidden_field :work_day, value: sprint.work_day, class: "work_day" %>
   <div class="col-md-6" id="burndown_chart"></div>
   <div class="col-md-6">
     <table class="table table-bordered" id="lost_hour_table"
@@ -7,16 +8,16 @@
       <tbody>
         <tr class="lost-hour-row">
           <td class="header_column"><%= t "lost_hour.lost_hour" %></td>
-          <% sprint.work_day.times do |index| %>
+          <% sprint.master_sprints.each_with_index do |_,index| %>
               <td id="lost-hour-<%= index %>">
                 <%= text_field_tag nil, index == 0 ? total_lost_hour :
-                  sum_lost_hour[index], disabled: true, class: "body_column" %>
+                sum_lost_hour[index], disabled: true, class: "body_column" %>
               </td>
           <% end %>
         </tr>
-        <tr>
+        <tr class="work-hour">
           <td class="header_column"><%= t "lost_hour.work_hour" %></td>
-            <% sprint.work_day.times do |index| %>
+            <% sprint.master_sprints.each_with_index do |_,index| %>
               <td id="work-hour-<%= index %>">
                 <%= text_field_tag nil, index == 0 ? sum_lost_hour[index] : "",
                   disabled: true, class: "body_column" %>
@@ -40,9 +41,5 @@
         <% end %>
       </tbody>
     </table>
-  <div class="col-md-offset-11">
-    <%= f.submit t("lost_hour.save"), data: {disable_with: t("lost_hour.saving")},
-      class: "btn btn-xs btn-info" %>
   </div>
-  </div>
-<% end %>
+</div>
