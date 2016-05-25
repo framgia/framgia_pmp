@@ -7,15 +7,14 @@
 
   td {
     margin: 0;
-    padding: 0;
+    padding: 0 5px;
     input, select {
       display: block;
-      padding: 0px 0px 4px 0px;
       margin: 0;
       border: 0;
       width: 100%;
-      height: 100%;
-      text-align: center;
+      line-height: 1.3em;
+      background: transparent;
       &:focus{
         outline: none;
       }
@@ -53,4 +52,3 @@
     background-color: #3C763D;
   }
 }
-

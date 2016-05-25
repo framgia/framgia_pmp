@@ -48,3 +48,13 @@ $(document).on("page:change", function(){
     width: '100%'
   });
 });
+
+
+$(document).ready(function(){
+  var totalWidth = 0;
+  $($('tr[class*=activity]')[0]).children('td').not('.story, .task-id, .task-name').each(function() {
+    totalWidth += $(this).outerWidth();
+  });
+
+  $('#tracking-time').width(totalWidth);
+});

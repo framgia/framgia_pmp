@@ -31,7 +31,7 @@ function initChart(){
     chart: {
       renderTo: "burndown_chart",
       height: 300,
-      width: 600
+      width: $(window).outerWidth() - $('#tracking-time').outerWidth() - 30
     },
     title: {
       text: "Burndown Chart"

@@ -1,35 +1,41 @@
-<%= render "shared/category_tab", project: @project, active_tab: @sprint.id %>
-<div id="sprints">
-  <div class="button pull-right">
-    <div class="dropdown pull-right">
-      <button id="dLabel" type="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false"
-        class="btn btn-default">
-        <span class="glyphicon glyphicon-align-justify"
-          aria-hidden="true"></span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-right"
-        aria-labelledby="dLabel">
-        <% if can? :edit, @sprint %>
-          <li><%= link_to t("buttons.edit"),
-            edit_admin_project_sprint_path(@project, @sprint) %>
-          </li>
-          <li><%= link_to t("buttons.delete"),
-            admin_project_sprint_path(@project, @sprint),
-            method: :delete, data: {confirm: t("projects.delete.confirm")} %>
-          </li>
-          <li><%= link_to t("work_performances.view"),
-            admin_project_sprint_work_performances_path(@project, @sprint) %>
-          </li>
-        <% else %>
-          <li><%= link_to t("work_performances.view"),
-            project_sprint_work_performances_path(@project, @sprint) %>
-          </li>
-        <% end %>
-      </ul>
+<%= form_for [@project, @sprint], html: {id: "lost_hour_form"} do |f| %>
+  <%= render "shared/category_tab", project: @project, active_tab: @sprint.id, f: f %>
+
+  <div id="sprints">
+    <div class="row">
+      <div class="dropdown pull-right">
+        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default">
+          <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel">
+          <% if can? :edit, @sprint %>
+            <li>
+              <%= link_to t("buttons.edit"),
+                edit_admin_project_sprint_path(@project, @sprint) %>
+            </li>
+            <li>
+              <%= link_to t("buttons.delete"),
+                admin_project_sprint_path(@project, @sprint),
+                method: :delete, data: {confirm: t("projects.delete.confirm")} %>
+            </li>
+            <li>
+              <%= link_to t("work_performances.view"),
+                admin_project_sprint_work_performances_path(@project, @sprint) %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to t("work_performances.view"),
+              project_sprint_work_performances_path(@project, @sprint) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+    <div class="row" id="chart">
+      <div class="col-md-6" id="burndown_chart"></div>
+    </div>
+    <%= render "shared/lost_hour", sprint: @sprint, project: @project,
+      assignees: @sprint.assignees, f: f %>
+    <%= render "shared/activities", f: f %>
   </div>
-  <%= render "shared/lost_hour", sprint: @sprint, project: @project,
-    assignees: @sprint.assignees %>
-  <%= render "shared/activities" %>
-</div>
+<% end %>

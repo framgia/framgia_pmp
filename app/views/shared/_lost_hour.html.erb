@@ -1,31 +1,30 @@
-<%= form_for [project, sprint], id: "lost_hour_form" do |f| %>
-  <div class="col-md-6" id="burndown_chart"></div>
-  <div class="col-md-6">
+<div class="row">
+  <%= f.hidden_field :work_day, value: sprint.work_day, class: "work_day" %>
+  <div class="col-md-12 pull-right" id="tracking-time">
     <table class="table table-bordered" id="lost_hour_table"
       data-number-assignees="<%= sprint.assignees.size %>"
       data-number-work-day="<%= sprint.work_day %>">
       <tbody>
         <tr class="lost-hour-row">
           <td class="header_column"><%= t "lost_hour.lost_hour" %></td>
-          <% sprint.work_day.times do |index| %>
-              <td id="lost-hour-<%= index %>">
-                <%= text_field_tag nil, index == 0 ? total_lost_hour :
-                  sum_lost_hour[index], disabled: true, class: "body_column" %>
-              </td>
+          <% sprint.master_sprints.each_with_index do |_,index| %>
+            <td id="lost-hour-<%= index %>">
+              <%= text_field_tag nil, index == 0 ? total_lost_hour :
+              sum_lost_hour[index], disabled: true, class: "body_column" %>
+            </td>
           <% end %>
         </tr>
-        <tr>
+        <tr class="work-hour">
           <td class="header_column"><%= t "lost_hour.work_hour" %></td>
-            <% sprint.work_day.times do |index| %>
+            <% sprint.master_sprints.each_with_index do |_,index| %>
               <td id="work-hour-<%= index %>">
                 <%= text_field_tag nil, index == 0 ? sum_lost_hour[index] : "",
                   disabled: true, class: "body_column" %>
               </td>
             <% end %>
         </tr>
-        <% @sprint.time_logs.group_by(&:assignee).each_with_index do |(assignee,
-          time_logs), index| %>
-          <tr class="assignee-row-<%= index %>">
+        <% @sprint.time_logs.group_by(&:assignee).each do |assignee, time_logs| %>
+          <tr class="assignee-row-<%= assignee.id %>">
             <td class="assignees_name"><%= assignee.user.name %></td>
             <%= f.fields_for :time_logs, time_logs do |time_log_builder| %>
               <td class="assignee-col-<%= time_log_builder.object.work_date %>">
@@ -33,16 +32,12 @@
                   value: assignee.id %>
                 <%= time_log_builder.hidden_field :work_date,
                   value: get_work_date(time_log_builder.index, @sprint) %>
-                <%= time_log_builder.text_field :lost_hour, type: :number %>
+                <%= time_log_builder.text_field :lost_hour %>
               </td>
             <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
-  <div class="col-md-offset-11">
-    <%= f.submit t("lost_hour.save"), data: {disable_with: t("lost_hour.saving")},
-      class: "btn btn-xs btn-info" %>
   </div>
-  </div>
-<% end %>
+</div>

@@ -1,0 +1,9 @@
+<% if header_log_time == "lost-hour-row" %>
+  <td id="lost-hour-<%= @sprint.time_logs.size + 1 %>">
+    <%= text_field_tag nil, 0, disabled: true, class: "body_column" %>
+  </td>
+<% elsif header_log_time == "work-hour" %>
+  <td id="work-hour-<%= @sprint.time_logs.size + 1 %>">
+    <%= text_field_tag nil, "", disabled: true, class: "body_column" %>
+  </td>
+<% end %>

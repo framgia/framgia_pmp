@@ -1,27 +1,24 @@
-<tr>
-  <td><%= activity_builder.text_field :product_backlog_id,
-    class: "row-#{row} #{type}" %></td>
-  <td><%= activity_builder.text_field :id, class: "row-#{row} #{type}" %></td>
-  <td><%= activity_builder.text_field :subject, class: "row-#{row} #{type}" %></td>
-  <td><%= activity_builder.select :user_id,
+<tr class="activity_<%= activity_builder.object.id %>">
+  <td class="story <%= type %>"><%= activity_builder.text_field :product_backlog_id,
+    class: "row-#{row}" %></td>
+  <td class="task-id <%= type %>"><%= activity_builder.text_field :id, class: "row-#{row}" %></td>
+  <td class="task-name text-left <%= type %>"><%= activity_builder.text_field :subject, class: "row-#{row}" %></td>
+  <td class="<%= type %>"><%= activity_builder.select :user_id,
     options_for_select(@sprint.assignees.collect {|assignee|
     [assignee.user_name, assignee.user_id]}, activity_builder.object.user_id),
-    {include_blank: true}, class: "row-#{row} #{type} assignee" %></td>
-  <td class="panel-left">
-    <input type="number" class="remaining row-<%= row %> <%= type %>"
+    {include_blank: true}, class: "row-#{row} assignee" %></td>
+  <td class="panel-left <%= type %>">
+    <input type="number" class="remaining row-<%= row %> text-center"
       value="<%= activity_builder.object.get_remaining_activity %>"readonly/>
-  </td>
-  <td class="panel-left">
-    <%= activity_builder.number_field :estimate,
-      class: "row-#{row} #{type} estimate", min: 0 %>
   </td>
   <%= f.fields_for :log_works,
     activity_builder.object.log_works.order(day: :asc) do |log_work_builder| %>
-      <td class="panel-left">
-        <%= log_work_builder.hidden_field :activity_id, value: activity_builder.object.id %>
+      <td class="panel-left <%= type %>">
+        <%= log_work_builder.hidden_field :activity_id,
+          value: activity_builder.object.id %>
         <%= log_work_builder.hidden_field :day %>
-        <%= log_work_builder.text_field :remaining_time, type: :number,
-          class: "log log-#{log_work_builder.object.day} row-#{row} #{type}" %>
+        <%= log_work_builder.text_field :remaining_time,
+          class: "log log-#{log_work_builder.object.day} row-#{row} text-center" %>
       </td>
   <% end %>
 </tr>

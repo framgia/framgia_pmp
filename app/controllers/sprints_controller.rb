@@ -6,13 +6,13 @@ class SprintsController < ApplicationController
   def show
     all_log_works = @activities.first.log_works if @activities.any?
     @log_works_count = all_log_works.size rescue 0
-    if @sprint.time_logs.empty?
-      @sprint.work_day.times do |work_date|
-        @sprint.assignees.each do |assignee|
-          @sprint.time_logs.build work_date: work_date, assignee: assignee
-        end
-      end
-    end
+    # if @sprint.time_logs.empty?
+    #   @sprint.work_day.times do |work_date|
+    #     @sprint.assignees.each do |assignee|
+    #       @sprint.time_logs.build work_date: work_date, assignee: assignee
+    #     end
+    #   end
+    # end
 
     @estimate = EstimateLogworkService.new @activities, @sprint rescue nil
     @log_estimates = @estimate.sum_remaining_for_day all_log_works
@@ -38,6 +38,6 @@ class SprintsController < ApplicationController
   end
 
   def load_activities
-    @activities = Activity.fitler_log_works @sprint
+    @activities = @sprint.activities# Activity.fitler_log_works @sprint
   end
 end
