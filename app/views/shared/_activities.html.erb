@@ -1,7 +1,15 @@
-<table id="activities" class="table table-bordered activities" >
+<table id="activities" class="table table-bordered" >
   <tbody>
     <%= render "shared/header" %>
-    <%= render "shared/rows_input" %>
+    <%= form_for [@project, @sprint] do |f| %>
+      <% @activities.each_with_index do |activity, row| %>
+        <%= render "row", activity: activity, row: row,
+          type: activity_class(activity), f: f %>
+      <% end %>
+      <div class="col-md-12">
+        <%= f.submit t("buttons.save"), class: "btn btn-success" %>
+      </div>
+    <% end %>
   </tbody>
 </table>
 <div class="col-md-12">

@@ -4,8 +4,8 @@ class SprintsController < ApplicationController
   before_action :load_sprint, :load_activities
 
   def show
-    all_log_works = @activities.first.log_works
-    @log_works_count = all_log_works.size
+    all_log_works = @activities.first.log_works if @activities.any?
+    @log_works_count = all_log_works.size rescue 0
     if @sprint.time_logs.empty?
       @sprint.work_day.times do |work_date|
         @sprint.assignees.each do |assignee|
@@ -14,7 +14,7 @@ class SprintsController < ApplicationController
       end
     end
 
-    @estimate = EstimateLogworkService.new @activities
+    @estimate = EstimateLogworkService.new @activities, @sprint
     @log_estimates = @estimate.sum_remaining_for_day all_log_works
   end
 

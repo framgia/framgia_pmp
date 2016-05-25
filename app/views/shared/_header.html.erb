@@ -47,7 +47,9 @@
   <th class="panel-left remaining-percent"><%= @estimate.get_percent_remaining %></th>
   <th class="panel-left log-actual-0"><%= @estimate.get_estimate_activities %></th>
   <% (1..@log_works_count).each do |index| %>
-    <th class="panel-left log-actual-<%= index %>">0</th>
+    <th class="panel-left log-actual-<%= index %>">
+      <%= @estimate.get_time_remaining_team[index - 1] %>
+    </th>
   <% end %>
   <% (@log_works_count..(@sprint.work_day - 3)).each do |index| %>
     <th class="panel-left log-actual-<%= index %>">0</th>
@@ -56,10 +58,10 @@
 <tr>
   <th class="panel-left worked"><%= @estimate.get_sum_worked %></th>
   <th class="panel-left remaining-header"><%= @estimate.get_sum_remaining %></th>
-  <th class="panel-left estimate-header"><%= @estimate.get_estimate_activities %></th>
+  <th class="panel-left log-estimate-0"><%= @estimate.get_estimate_activities %></th>
   <% (1..@log_works_count).each do |index| %>
-    <th class="panel-left log-estimate-<%= index+1 %>">
-      <%= @log_estimates[index - 1] %>
+    <th class="panel-left log-estimate-<%= index %>">
+      <%= @log_estimates.nil? ? 0 : @log_estimates[index - 1] %>
     </th>
   <% end %>
   <% (@log_works_count..(@sprint.work_day - 3)).each do |index| %>

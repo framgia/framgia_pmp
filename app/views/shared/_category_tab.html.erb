@@ -7,7 +7,7 @@
         </li>
         <% project.sprints.each do |sprint| %>
           <li role="presentation" class="<%= tab_active sprint.id, active_tab %>">
-            <%= link_to sprint.name, admin_project_sprint_path(project, sprint) %></li>
+            <%= link_to sprint.name, project_sprint_path(project, sprint) %></li>
         <% end %>
         <li role="presentation" class="<%= tab_active Settings.tabs.new_sprint, active_tab %>">
           <%= link_to t("sprints.new"), new_admin_project_sprint_path(@project) %></li>

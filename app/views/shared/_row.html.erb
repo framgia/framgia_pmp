@@ -2,11 +2,12 @@
   <td><input class="row-<%= row %> <%= type %>" value="<%= activity.
     product_backlog_id %>"/></td>
   <td><input class="row-<%= row %> <%= type %>" value="<%= activity.id %>"/></td>
-  <td><input class="row-<%= row %> <%= type %>" value="<%= activity.subject %>"/></td>
+  <td><input class="row-<%= row %> <%= type %>" title="<%= activity.subject %>"
+    value="<%= activity.subject %>"/></td>
   <td><%= select_tag :activity_assignee,
     options_for_select(@sprint.assignees.collect {|assignee|
     [assignee.user_name, assignee.user_id]}),
-    {include_blank: true,class: "row-#{row} #{type} assignee"} %></td>
+    {include_blank: true, class: "row-#{row} #{type} assignee"} %></td>
   <td class="panel-left">
     <input type="number" class="remaining row-<%= row %> <%= type %>"
       value="<%= activity.get_remaining_activity %>"readonly/>
@@ -15,13 +16,13 @@
     <input type="number" min=0 class="estimate row-<%= row %> <%= type %>"
       value="<%= activity.estimate %>"/>
   </td>
-  <% activity.log_works.each_with_index do |log_work, index| %>
-    <td class="panel-left"><input type="number"
-      class="log log-<%= index %> row-<%= row %> <%= type %>"
-      value="<%= log_work.remaining_time %>"/></td>
-  <% end %>
-  <% (@log_works_count..(@sprint.work_day - 3)).each do |index| %>
-    <td class="panel-left"><input type="number"
-      class="log log-<%= index %> row-<%= row %> <%= type %>"/></td>
+  <%= f.fields_for :log_works, activity.log_works do |log_work_builder| %>
+    <td class="panel-left">
+      <%= log_work_builder.hidden_field :activity_id, value: activity.id %>
+      <%= log_work_builder.hidden_field :day,
+        value: get_work_date(log_work_builder.index, @sprint) %>
+      <%= log_work_builder.text_field :remaining_time, type: :number,
+        class: "log log-#{log_work_builder.object.day} row-#{row} #{type}" %>
+    </td>
   <% end %>
 </tr>
