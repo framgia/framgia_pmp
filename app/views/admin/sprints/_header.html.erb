@@ -7,10 +7,7 @@
   <td></td>
   <td><%= t "activities.date" %></td>
   <td><input type="text"/></td>
-  <% (1..@log_works_count).each do |index| %>
-    <td class="panel-left"><input type="text"/></td>
-  <% end %>
-  <% (@log_works_count..(@sprint.work_day - 3)).each do |index| %>
+  <% (1...@sprint.work_day).each do |index| %>
     <td class="panel-left"><input type="text"/></td>
   <% end %>
 </tr>
@@ -34,35 +31,25 @@
       <%= t "activities.remaining" %>
     </span>
   </th>
-  <th class="panel-left">1</th>
-  <% (1..@log_works_count).each do |index| %>
-    <th class="panel-left"><%= index + 1 %></th>
-  <% end %>
-  <% (@log_works_count..(@sprint.work_day - 3)).each do |index| %>
-    <th class="panel-left"><%= index + 2 %></th>
+  <% (1..@sprint.work_day).each do |index| %>
+    <th class="panel-left"><%= index %></th>
   <% end %>
 </tr>
 <tr>
   <th class="panel-left worked-percent"><%= @percent_worked %></th>
   <th class="panel-left remaining-percent"><%= @percent_remaining %></th>
   <th class="panel-left log-actual-0"><%= @estimate_header %></th>
-  <% (1..@log_works_count).each do |index| %>
+  <% (1...@sprint.work_day).each do |index| %>
     <th class="panel-left log-actual-<%= index %>"><%= @arr_remaining[index - 1] %></th>
-  <% end %>
-  <% (@log_works_count..(@sprint.work_day - 3)).each do |index| %>
-    <th class="panel-left log-actual-<%= index %>">0</th>
   <% end %>
 </tr>
 <tr>
   <th class="panel-left worked"><%= @sum_worked %></th>
   <th class="panel-left remaining-header"><%= @sum_remaining_header %></th>
   <th class="panel-left log-estimate-0"><%= @estimate_header %></th>
-  <% (1..@log_works_count).each do |index| %>
+  <% (1...@sprint.work_day).each do |index| %>
     <th class="panel-left log-estimate-<%= index %>">
       <%= @log_estimates.nil? ? 0 : @log_estimates[index - 1]  %>
     </th>
-  <% end %>
-  <% (@log_works_count..(@sprint.work_day - 3)).each do |index| %>
-    <th class="panel-left log-estimate-<%= index %>">0</th>
   <% end %>
 </tr>
