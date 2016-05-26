@@ -1,10 +1,9 @@
 <table id="activities" class="table table-bordered" >
   <tbody>
-    <%= render "shared/header" %>
-    <%= form_for [@project, @sprint] do |f| %>
+    <%= render "header" %>
+    <%= form_for [:admin, @project, @sprint] do |f| %>
       <% @activities.each_with_index do |activity, row| %>
-        <%= render "shared/row", activity: activity, row: row,
-          type: activity_class(activity), f: f %>
+        <%= render "row", activity: activity, row: row, type: activity_class(activity), f: f %>
       <% end %>
       <div class="col-md-12">
         <%= f.submit t("buttons.save"), class: "btn btn-success" %>
@@ -14,7 +13,7 @@
 </table>
 <div class="col-md-12">
   <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-plus"),
-    "javascript:void(0)", class: "btn btn-primary", id: "load_more",
-    type: "button" %>
+    "javascript:void(0)", class: "btn btn-primary", id: "load_more", type: "button" %>
 </div>
-<%= render "shared/more_rows" %>
+
+<%= render "more_rows" %>
