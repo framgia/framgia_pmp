@@ -73,15 +73,6 @@ namespace :db do
       Fabricate :work_performance, phase_id: Phase.first.id, activity_id: activity.id
     end
 
-    puts "Creating log works for activities in sprints"
-    Sprint.first.activities.each_with_index do |activity|
-      9.times do |index|
-        Fabricate :log_work, remaining_time: 9 - index, day: index + 1,
-          activity_id: activity.id, sprint_id: Sprint.first.id,
-          master_sprint_id: master_sprint.id
-      end
-    end
-
     puts "Success remake data"
   end
 end

@@ -1,6 +1,5 @@
 $(document).on('page:change', function(){
   $('[data-toggle="tooltip"]').tooltip();
-
   // total log_works
   function totalLogWorksCol() {
     $.each($('th[class*="log-estimate"]'), function(i, col) {
@@ -150,9 +149,5 @@ $(document).on('page:change', function(){
 
   $('.log-actual-0').change(function() {
     setActual(0);
-  });
-
-  $("#load_more").click(function() {
-    $("#activities tbody").append($("#more-rows table tbody").children().clone());
   });
 });

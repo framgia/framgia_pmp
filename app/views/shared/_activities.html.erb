@@ -1,20 +1,15 @@
-<table id="activities" class="table table-bordered" >
-  <tbody>
-    <%= render "shared/header" %>
-    <%= form_for [@project, @sprint] do |f| %>
-      <%= f.fields_for :activities, @sprint.activities do |activity_builder|%>
-        <%= render "shared/row", activity_builder: activity_builder, row: activity_builder.index,
-          type: activity_class(activity_builder.object), f: f %>
-      <% end %>
-      <div class="col-md-12">
-        <%= f.submit t("buttons.save"), class: "btn btn-success" %>
-      </div>
-    <% end %>
-  </tbody>
-</table>
-<div class="col-md-12">
-  <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-plus"),
-    "javascript:void(0)", class: "btn btn-primary", id: "load_more",
-    type: "button" %>
-</div>
-<%= render "shared/more_rows" %>
+<%= form_for @sprint, url: project_sprint_path, method: :patch do |f| %>
+  <table id="activities" class="table table-bordered" >
+      <tbody>
+        <%= render "shared/header" %>
+        <%= f.fields_for :activities, @sprint.activities do |activity_builder| %>
+          <%= render "shared/row", activity_builder: activity_builder, row: activity_builder.index,
+            type: activity_class(activity_builder.object), f: f %>
+        <% end %>
+        <p><%= link_to_add_fields t("activities.add"), f, :activities %></p>
+        <div class="col-md-12">
+          <%= f.submit t("buttons.save"), class: "btn btn-success" %>
+        </div>
+      </tbody>
+  </table>
+<% end %>
