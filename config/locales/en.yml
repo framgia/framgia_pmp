@@ -130,6 +130,7 @@ en:
     remaining: "R"
     start_date: "Start Date"
     date: "Date"
+    add: "Add Activity"
   lost_hour:
     lost_hour: "Lost hour"
     work_hour: "Work hour"

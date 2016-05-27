@@ -18,6 +18,10 @@ class SprintsController < ApplicationController
     @log_estimates = @estimate.sum_remaining_for_day all_log_works
   end
 
+  def edit
+    @sprint.activities.build
+  end
+
   def update
     if @sprint.update_attributes sprint_params
       flash[:success] = flash_message "updated"

@@ -1,25 +1,32 @@
 <div id="more-rows" class="hide">
   <table>
-    <% (@activities_count..@activities_count+5).each do |row| %>
-      <tr>
-        <td><input type="text"/></td>
-        <td><input type="text"/></td>
-        <td><input type="text"/></td>
-
-        <td><input type="text"/></td>
-        <td><input type="number" value="0" class="remaining row-<%= row %>"/></td>
-        <td><input type="number" value="0" class="estimate row-<%= row %>"/></td>
-
-        <% (1..@log_works_count).each do |index| %>
+    <% (@activities_count..@activities_count + 5).each do |row| %>
+    <tr>
+      <td><%= activity_builder.text_field :product_backlog_id,
+        class: "row-#{row} #{type}" %></td>
+      <td><%= activity_builder.text_field :id, class: "row-#{row} #{type}" %></td>
+      <td><%= activity_builder.text_field :subject, class: "row-#{row} #{type}" %></td>
+      <td><%= activity_builder.select :user_id,
+        options_for_select(@sprint.assignees.collect {|assignee|
+        [assignee.user_name, assignee.user_id]}, activity_builder.object.user_id),
+        {include_blank: true}, class: "row-#{row} #{type} assignee" %></td>
+      <td class="panel-left">
+        <input type="number" class="remaining row-<%= row %> <%= type %>"
+          value="<%= activity_builder.object.get_remaining_activity %>"readonly/>
+      </td>
+      <td class="panel-left">
+        <%= activity_builder.number_field :estimate,
+          class: "row-#{row} #{type} estimate", min: 0 %>
+      </td>
+      <%= f.fields_for :log_works,
+        activity_builder.object.log_works.order(day: :asc) do |log_work_builder| %>
           <td class="panel-left">
-            <input type="number" class="log-<%= index %> row-<%= row %>" value="0"/>
+            <%= log_work_builder.hidden_field :activity_id, value: activity_builder.object.id %>
+            <%= log_work_builder.hidden_field :day %>
+            <%= log_work_builder.text_field :remaining_time, type: :number,
+              class: "log log-#{log_work_builder.object.day} row-#{row} #{type}" %>
           </td>
-        <% end %>
-        <% (@log_works_count..8).each do |index| %>
-          <td class="panel-left">
-            <input type="number" class="log-<%= index+1 %> row-<%= row %>" value="0"/>
-          </td>
-        <% end %>
+      <% end %>
     <% end %>
   </table>
 </div>

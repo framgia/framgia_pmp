@@ -30,6 +30,17 @@
 //= require lost_hour
 //= require highcharts
 //= require init_chart
+function remove_fields(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".fields").hide();
+}
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g");
+  $("#activities tr:last").after(content.replace(regexp, new_id));
+}
+
 
 $(document).on("page:change", function(){
   $(".datepicker").datepicker({
