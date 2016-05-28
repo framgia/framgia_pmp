@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root "projects#index"
 
   resources :synchronizes, only: [:index, :create]
+  resources :columns, only: [:create]
 
   resources :projects do
     resources :product_backlogs

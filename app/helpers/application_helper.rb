@@ -18,10 +18,14 @@ module ApplicationHelper
   end
 
   def activity_class activity
-    if activity.user.nil?
-      activity.estimate.nil? ? "default" : "estimated"
+    assignee = activity.user
+    estimate = activity.estimate.nil? ? 0 : activity.estimate
+    remaining = activity.log_works.empty? ? 0 : activity.log_works.last.remaining_time
+
+    if assignee.nil?
+      estimate != 0 ? (remaining != 0 ? "estimated" : "default") : "default"
     else
-      activity.estimate.nil? ? "assigned" : "processed"
+      estimate != 0 ? (remaining != 0 ? "processed" : "default") : "assigned"
     end
   end
 

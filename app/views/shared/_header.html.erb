@@ -6,12 +6,12 @@
 <tr class="master-data">
   <td></td>
   <td><%= t "activities.date" %></td>
-  <td><input type="text"/></td>
-  <% (1..@sprint.work_day).each do |index| %>
+
+  <% @sprint.master_sprints.each_with_index do |_, index| %>
     <td class="panel-left"><input type="text"/></td>
   <% end %>
 </tr>
-<tr>
+<tr class="master-sprint-working-day">
   <th rowspan="3" style="width: 5%; vertical-align: middle;">
     <%= t "activities.story_id" %>
   </th>
@@ -31,27 +31,25 @@
       <%= t "activities.remaining" %>
     </span>
   </th>
-  <% (1..@sprint.work_day).each do |index| %>
-    <th class="panel-left"><%= index %></th>
+  <% @sprint.master_sprints.each do |master_sprint| %>
+    <th class="panel-left"><%= master_sprint.day %></th>
   <% end %>
 </tr>
-<tr>
+<tr class="master-estimate-plan">
   <th class="panel-left worked-percent"><%= @estimate.get_percent_worked %></th>
   <th class="panel-left remaining-percent"><%= @estimate.get_percent_remaining %></th>
-  <th class="panel-left log-actual-0"><%= @estimate.get_estimate_activities %></th>
-  <% (1...@sprint.work_day).each do |index| %>
-    <th class="panel-left log-actual-<%= index %>">
-      <%= @estimate.get_time_remaining_team[index - 1] %>
+  <% @sprint.master_sprints.each_with_index do |_, index| %>
+    <th class="panel-left log-estimate-<%= index %>">
+      <%= @estimate.get_time_remaining_team[index] %>
     </th>
   <% end %>
 </tr>
-<tr>
+<tr class="actual">
   <th class="panel-left worked"><%= @estimate.get_sum_worked %></th>
   <th class="panel-left remaining-header"><%= @estimate.get_sum_remaining %></th>
-  <th class="panel-left log-estimate-0"><%= @estimate.get_estimate_activities %></th>
-  <% (1...@sprint.work_day).each do |index| %>
-    <th class="panel-left log-estimate-<%= index %>">
-      <%= @log_estimates.nil? ? 0 : @log_estimates[index - 1] %>
+  <% @sprint.master_sprints.each_with_index do |_, index| %>
+    <th class="panel-left log-actual-<%= index %>">
+      <%= @log_estimates.nil? ? 0 : @log_estimates[index] %>
     </th>
   <% end %>
 </tr>
