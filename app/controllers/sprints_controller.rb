@@ -11,6 +11,7 @@ class SprintsController < ApplicationController
   end
 
   def update
+    binding.pry
     if @sprint.update_attributes sprint_params
       flash[:success] = flash_message "updated"
       redirect_to project_sprint_path(@project, @sprint)

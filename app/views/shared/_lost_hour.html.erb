@@ -30,6 +30,7 @@
               <td class="assignee-col-<%= time_log_builder.object.master_sprint.day - 1 %>">
                 <%= time_log_builder.hidden_field :assignee_id,
                   value: assignee.id %>
+
                 <%= time_log_builder.hidden_field :work_date,
                   value: get_work_date(time_log_builder.index, @sprint) %>
                 <%= time_log_builder.text_field :lost_hour %>
