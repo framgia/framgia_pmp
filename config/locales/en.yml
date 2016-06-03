@@ -108,6 +108,7 @@ en:
   date:
     format: "dd-mm-yyyy"
     rb_format: "%d-%m-%Y"
+    day: "d"
   layouts:
     account: "Account"
     projects: "Projects"
