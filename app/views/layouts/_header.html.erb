@@ -5,7 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <% unless current_user.member? %>
-            <li><%= link_to t("layouts.invite"), new_invite_user_path %></li>
+            <li><%= link_to t("layouts.invite"), users_path %></li>
             <li><%= link_to t("layouts.sync_user"), synchronizes_path %></li>
             <li><%= link_to t("layouts.projects"), admin_projects_path %></li>
             <li><%= link_to t("layouts.phases"), admin_phases_path %></li>

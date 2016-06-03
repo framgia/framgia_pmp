@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json {render json: UsersDatatable.new(view_context)}
+    end
+  end
+
   def update
     if @user.update_attributes user_params
       sign_in(@user, bypass: true)
