@@ -1,0 +1,17 @@
+<%= render "invite_users/new" %>
+<div id="list-users">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <table id="users" class="table table-bordered display" data-source="<%= users_path(format: "json") %>" >
+        <thead>
+          <tr class="active">
+            <th><%= t "users.stt" %></th>
+            <th><%= t "users.name" %></th>
+            <th><%= t "users.email" %></th>
+            <th><%= t "users.role" %></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>

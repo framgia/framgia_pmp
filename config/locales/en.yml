@@ -141,3 +141,8 @@ en:
     saving: "Saving..."
   delete:
       confirm: "Are you sure?"
+  users:
+    stt: "STT"
+    name: "Name"
+    email: "Email"
+    role: "Role"

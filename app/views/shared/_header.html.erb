@@ -7,7 +7,7 @@
   <td></td>
   <td><%= t "activities.date" %></td>
     <%= f.fields_for :master_sprints, @sprint.master_sprints do |master_sprints_builder| %>
-      <td class="panel-left">
+      <td class="panel-left <%= "today" if master_sprints_builder.object.is_today? %>">
         <%= master_sprints_builder.hidden_field :date %>
         <input type="text" class="master-sprint-day"
           value="<%= master_sprints_builder.object.date.day %>"/>

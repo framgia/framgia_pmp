@@ -97,6 +97,18 @@ $(document).on('page:change', function(){
     }
   }
 
+  setColorToday = function() {
+    if ($("#activities").length > 0) {
+      today_column = $(".today");
+      activity_column_index = today_column.index() / 2 + 5;
+      header_index = activity_column_index - 3;
+      $('#activities tr td:nth-child(' + activity_column_index + ')').css("background-color", "#F00");
+      $('#activities .master-sprint-working-day th:nth-child(' + activity_column_index + ')').css("background-color", "#F00");
+      $('#activities .master-estimate-plan th:nth-child(' + header_index + '), .actual th:nth-child(' + header_index + ')').css("background-color", "#F00");
+      today_column.css("background-color", "#F00");
+    }
+  }
+
   logWorkEventListener = function() {
     var filterRow = function(v) {return v.indexOf('row-') == 0}
     var rowClass = this.className.split(' ').filter(filterRow)[0];
@@ -147,6 +159,7 @@ $(document).on('page:change', function(){
     setRowColor(rowClass);
   }
 
+  setColorToday();
   $('.log').change(logWorkEventListener);
 
   $('.log-1').change(estimateEventListener);

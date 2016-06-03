@@ -17,6 +17,9 @@ gem "bootstrap-sass"
 gem "bootstrap-datepicker-rails"
 gem "cancancan", "~> 1.10"
 gem "select2-rails"
+gem "jquery-datatables-rails", "~> 3.3.0"
+gem "ajax-datatables-rails"
+gem "kaminari"
 
 group :development, :test do
   gem "pry-rails"

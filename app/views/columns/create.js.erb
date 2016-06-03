@@ -16,6 +16,7 @@
 <% end %>
 
 $('.log-<%= @master_sprint.day %>').change(logWorkEventListener);
+setColorToday();
 totalLogWorksCol();
 setLastActual();
 setActual(<%= @total_master_sprint - 1 %>);
