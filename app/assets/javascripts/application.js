@@ -38,16 +38,28 @@ function add_fields(link, association, content) {
 }
 
 $(document).on("page:change", function(){
+  // var datetime_options = {
+  //   autoclose: true
+  // };
 
+  // $(document).on("click", "input.datepicker", function(){
+  //   $(this).datepicker({
+  //     format:
+  //     autoclose: true
+  //   }).datepicker("show");
+  // });
   $(".datepicker").datepicker({
     format: I18n.t("date.format")
+    autoclose: true
   });
 
 
-  $(".master-sprint-day").datepicker({
-    format: "d"
-  }).on("changeDate", function(event){
-    $(this).prev().val(event.format(I18n.t("date.format")));
+  $(".master-sprint-day")
+    .datepicker(datetime_options, datetime_options.format = I18n.t("date.day"))
+    .on("changeDate", function(event){
+      $(this).prev().val(event.format(I18n.t("date.format")));
+    }).on("click", function(event){
+      $(this).datepicker("show");
   });
 
   $( "#assignee" ).select2({
