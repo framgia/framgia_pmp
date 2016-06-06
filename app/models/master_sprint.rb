@@ -11,8 +11,7 @@ class MasterSprint < ActiveRecord::Base
   private
   def create_log_times_and_log_works
     sprint.assignees.each do |assignee|
-      assignee.time_logs.create master_sprint: self,
-        work_date: date, sprint: sprint
+      assignee.time_logs.create master_sprint: self, sprint: sprint
     end
 
     sprint.activities.each do |activity|
