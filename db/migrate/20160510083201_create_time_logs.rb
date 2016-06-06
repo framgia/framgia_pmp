@@ -4,7 +4,6 @@ class CreateTimeLogs < ActiveRecord::Migration
       t.integer :assignee_id
       t.references :sprint, index: true, foregin: true
       t.references :master_sprint, index: true, foreign: true
-      t.integer :work_date
       t.integer :lost_hour
 
       t.timestamps null: false
