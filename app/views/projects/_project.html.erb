@@ -1,0 +1,27 @@
+<%= render "shared/category_tab", project: @project,
+  active_tab: Settings.tabs.overview_project, f: nil %>
+<div id="projects">
+  <div class="subject-content">
+    <div class="row">
+      <div class="col-md-9 project-description">
+        <h3><%= @project.name %></h3>
+        <p><i><%= @project.description %></i></p>
+        <p class="label"><%= t "projects.show.start_date" %></p>
+        <p><%= @project.start_date %></p>
+        <p class="label"><%= t "projects.show.end_date" %></p>
+        <p><%= @project.end_date %></p>
+      </div>
+      <div class="col-md-3 box">
+        <p class="label"><%= t "project.show.manager" %></p>
+        <p><%= link_to @manager.name, user_path(@manager) %></p>
+        <p class="label"><%= t "project.show.member" %></p>
+        <p class="list-user">
+          <% @assignees.each_with_index do |assignee, index| %>
+            <%= link_to assignee.user_name,
+              user_path(assignee.user) %><%= (index == @assignees.size - 1)  ? "." : "," %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
