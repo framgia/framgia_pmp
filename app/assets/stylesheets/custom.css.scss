@@ -6,8 +6,13 @@
   a {
     color: #FFFFFF;
     font-size: 1em;
-    }
   }
+}
+
+.navbar-fixed-top {
+  position: relative;
+  margin-bottom: 0px;
+}
 
 #logo {
   padding-left: 10px;
@@ -30,7 +35,8 @@
 }
 
 .wrapper {
-  margin-top: 55px;
+  height: 92%;
+  margin-top: 4px;
   .error_explanation {
     padding-left: 150px;
   }
@@ -38,8 +44,16 @@
   #work-performance-datas, #sprints {
     padding: 15px 25px;
   }
+
+  #lost_hour_form {
+    height: 100%;
+  }
 }
 
 #error_explanation {
   padding: 0px 50px 0px 50px;
+}
+
+html, body {
+  height: 100%;
 }
