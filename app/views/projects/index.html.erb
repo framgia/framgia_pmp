@@ -1,29 +1,6 @@
 <div id="projects">
   <div class="title"><%= t "layout.projects" %></div>
   <% if @projects.any? %>
-    <div class="row col-md-10 col-md-offset-1 custyle">
-      <table class="table table-striped custab">
-        <thead>
-          <tr>
-            <th><%= t "projects.table.thead.id" %></th>
-            <th><%= t "projects.table.thead.name" %></th>
-            <th><%= t "projects.table.thead.description" %></th>
-            <th><%= t "projects.table.thead.manager" %></th>
-            <th><%= t "projects.table.thead.start_date" %></th>
-            <th><%= t "projects.table.thead.end_date" %></th>
-          </tr>
-        </thead>
-        <% @projects.each_with_index.map do |project, index| %>
-          <tr>
-            <td><%= index + 1 %></td>
-            <td><%= link_to project.name, project_path(project) %></td>
-            <td><%= project.description %></td>
-            <td><%= project.manager_name %></td>
-            <td><%= project.start_date %></td>
-            <td><%= project.end_date %></td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
+    <%= render "list_projects" %>
   <% end %>
 </div>

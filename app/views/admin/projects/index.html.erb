@@ -1,29 +1,4 @@
 <h2 class="text-center"><%= t "layout.projects" %></h2>
 <div id="projects">
-  <div class="row col-md-10 col-md-offset-1 custyle">
-    <table class="table table-striped custab">
-      <thead>
-        <a href="/admin/projects/new" class="btn btn-primary pull-right">
-          <%= t "buttons.new" %></a>
-          <tr>
-            <th><%= t "projects.table.thead.id" %></th>
-            <th><%= t "projects.table.thead.name" %></th>
-            <th><%= t "projects.table.thead.description" %></th>
-            <th><%= t "projects.table.thead.manager" %></th>
-            <th><%= t "projects.table.thead.start_date" %></th>
-            <th><%= t "projects.table.thead.end_date" %></th>
-          </tr>
-      </thead>
-      <% @projects.each_with_index.map do |project, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= link_to project.name, admin_project_path(project) %></td>
-          <td><%= project.description %></td>
-          <td><%= project.manager_name %></td>
-          <td><%= project.start_date %></td>
-          <td><%= project.end_date %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+  <%= render "projects/list_projects" %>
 </div>

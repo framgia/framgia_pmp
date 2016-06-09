@@ -1,0 +1,27 @@
+<div class="row col-md-10 col-md-offset-1 custyle">
+  <table class="table table-striped custab">
+    <thead>
+      <%= link_to t("buttons.new"), new_admin_project_path,
+        class: "btn btn-primary pull-right" if can? :create, Project %>
+      <tr>
+        <th><%= t "projects.table.thead.id" %></th>
+        <th><%= t "projects.table.thead.name" %></th>
+        <th><%= t "projects.table.thead.description" %></th>
+        <th><%= t "projects.table.thead.manager" %></th>
+        <th><%= t "projects.table.thead.start_date" %></th>
+        <th><%= t "projects.table.thead.end_date" %></th>
+      </tr>
+    </thead>
+    <% @projects.each_with_index do |project, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= link_to project.name,
+           current_user.manager? ? admin_project_path(project) : project_path(project) %></td>
+        <td><%= project.description %></td>
+        <td><%= project.manager_name %></td>
+        <td><%= project.start_date %></td>
+        <td><%= project.end_date %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
