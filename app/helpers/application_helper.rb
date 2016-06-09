@@ -54,13 +54,4 @@ module ApplicationHelper
   def home_page
     (current_user.nil? || current_user.member?) ? root_path : admin_projects_path
   end
-
-  def link_to_add_fields label, f, assoc
-    new_obj = f.object.class.reflect_on_association(assoc).klass.new
-    fields = f.fields_for assoc, new_obj, child_index: "new_#{assoc}" do |builder|
-      render "shared/#{assoc.to_s.singularize}_fields", f: builder
-    end
-    link_to label, "#", onclick: "add_fields(this, \"#{assoc}\",
-      \"#{escape_javascript(fields)}\")", remote: true
-  end
 end
