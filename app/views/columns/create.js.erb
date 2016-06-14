@@ -40,7 +40,7 @@ function setLastActual() {
 
 function updateDatePicker() {
   $(".day-<%= @master_sprint.day %>").datepicker({
-    format: I18n.t("date.day"),
+    format: I18n.t("date.js_format"),
     autoclose: true
   }).on("changeDate", changeDateListener);
 }

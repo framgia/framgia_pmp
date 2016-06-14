@@ -12,7 +12,7 @@
       class="newest_master_sprint" name="sprint[master_sprints_attributes][<%= @master_sprint.day + 1 %>][date]"
       id="sprint_master_sprints_attributes_<%= @master_sprint.day + 1 %>_date">
     <input type="text" class="master-sprint-day text-center day-<%= @master_sprint.day %>"
-      value="<%= @master_sprint.date.day %>">
+      value="<%= @master_sprint.date.strftime('%m-%d-%Y') %>">
     <input type="hidden" value="<%= get_master_sprint_id %>"
       name="sprint[master_sprints_attributes][<%= @master_sprint.day + 1 %>][id]"
       id="sprint_master_sprints_attributes_<%= @master_sprint.day + 1 %>_id">
