@@ -13,7 +13,7 @@
         class: "#{'newest_master_sprint' if master_sprints_builder.object == @sprint.master_sprints.last}
                 #{'first_day' if master_sprints_builder.index == 0} master-sprint-date" %>
       <input type="text" class="master-sprint-day text-center day-<%= master_sprints_builder.object.day %>"
-        value="<%= master_sprints_builder.object.date.day %>"/>
+        value="<%= master_sprints_builder.object.date.strftime('%m-%d-%Y') %>" />
     </td>
   <% end %>
 </tr>

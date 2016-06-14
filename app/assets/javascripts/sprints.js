@@ -40,7 +40,7 @@ $(document).on('page:change', function() {
   }
 
   $(".master-sprint-day").datepicker({
-    format: I18n.t("date.day"),
+    format: I18n.t("date.js_format"),
     autoclose: true
   }).on("changeDate", changeDateListener);
 
