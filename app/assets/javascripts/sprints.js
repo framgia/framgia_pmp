@@ -35,14 +35,27 @@ $(document).on('page:change', function() {
       var m = next_date_new.getMonth();
       var y = next_date_new.getFullYear();
       $('.day-' + i).prev().val(y + '-' + (m  + 1) + '-' + d).change();
+      $('.day-' + i).datepicker({
+        format: I18n.t("date.day"),
+        autoclose: true
+      });
       $('.day-' + i).datepicker('update', new Date(y, m, d));
     }
+    console.log("change date");
   }
 
-  $(".master-sprint-day").datepicker({
-    format: I18n.t("date.day"),
-    autoclose: true
-  }).on("changeDate", changeDateListener);
+  $(".master-sprint-day").click(function(event) {
+    $(this).datepicker({
+      format: I18n.t("date.day"),
+      autoclose: true
+    }).on("changeDate", changeDateListener);
+    var date = new Date($(this).prev("input[type='hidden']").val());
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    $(this).datepicker("update", new Date(y, m, d));
+    $(this).datepicker("show");
+  });
 
   $(".master-sprint-date").change(masterSprintDateListener);
 })
