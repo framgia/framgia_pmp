@@ -16,16 +16,18 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = "nguyendactruong.herokuapp.com"
-  config.action_mailer.default_url_options = {host: host}
-  ActionMailer::Base.smtp_settings = {
-    address: "smtp.sendgrid.net",
-    port: "587",
-    authentication: :plain,
-    user_name: ENV["SENDGRID_USERNAME"],
-    password: ENV["SENDGRID_PASSWORD"],
-    domain: "heroku.com",
-    enable_starttls_auto: true
+  config.action_mailer.raise_delivery_errors = true
+  host = "localhost:3000"
+  config.action_mailer.default_url_options = {host: host, protocol: "http"}
+
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => "pmp.com",
+    :user_name            => ENV["gmail_user"],
+    :password             => ENV["gmail_password"],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
   }
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
