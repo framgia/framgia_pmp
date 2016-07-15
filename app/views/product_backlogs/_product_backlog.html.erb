@@ -16,7 +16,7 @@
   <td><%= text_field_tag "product_backlogs[#{product_backlog.id}][actual]",
     product_backlog.actual %></td>
   <td><%= text_field_tag "product_backlogs[#{product_backlog.id}][remaining]",
-    product_backlog.remaining %></td>
+    product_backlog.calculate_remaining_time %></td>
   <td>
     <i class="fa fa-trash fa-2x delete_icon delete-product-backlog" aria-hidden="true"
       data-project-id="<%= @project.id %>" data-product-backlog-id="<%= product_backlog.id %>">
