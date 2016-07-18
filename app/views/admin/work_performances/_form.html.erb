@@ -13,9 +13,33 @@
       <%= f.label :description, class: "control-label" %>
       <%= f.text_field :description, class: "form-control first_input"  %>
     </div>
-    <div class="form-group">
-      <%= f.label :plan, class: "control-label" %>
-      <%= f.text_field :plan, class: "form-control" %>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :plan, class: "control-label" %>
+        <%= f.number_field :plan, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :spent_hour, class: "control-label" %>
+        <%= f.number_field :spent_hour, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :burned_hour, class: "control-label" %>
+        <%= f.number_field :burned_hour, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :estimated_story, class: "control-label" %>
+        <%= f.number_field :estimated_story, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :burned_story, class: "control-label" %>
+        <%= f.number_field :burned_story, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :estimated_task, class: "control-label" %>
+        <%= f.number_field :estimated_task, class: "form-control" %>
+      </div>
     </div>
     <div class="form-group">
     <%= f.submit t "work_performances.update", class: "btn btn-primary" %>
