@@ -1,0 +1,24 @@
+<thead>
+  <tr>
+    <th class="th"></th>
+    <th class="activity"><%= t "table.thead.activity" %></th>
+    <th class="assigned"><%= t "table.thead.assigned" %></th>
+    <% @phases.each do |phase| %>
+      <th colspan="7" class="phase-name"><%= phase.phase_name %></th>
+    <% end %>
+  </tr>
+  <tr>
+    <th class="th"></th>
+    <th class="activity"></th>
+    <th class="assigned"></th>
+    <% @phases.each do |phase| %>
+      <th class="phase-value"><%= t "table.thead.plan" %></th>
+      <th class="phase-value"><%= t "table.thead.actual" %></th>
+      <th class="phase-value"><%= t "table.thead.spent_hour" %></th>
+      <th class="phase-value"><%= t "table.thead.burned_hour" %></th>
+      <th class="phase-value"><%= t "table.thead.estimated_hour" %></th>
+      <th class="phase-value"><%= t "table.thead.burned_story" %></th>
+      <th class="phase-value"><%= t "table.thead.estimated_hour" %></th>
+    <% end %>
+  </tr>
+</thead>
