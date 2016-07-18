@@ -13,7 +13,8 @@ class Activity < ActiveRecord::Base
   end
   scope :fitler_log_works, ->sprint{includes(:log_works).where(sprint: sprint)}
 
-  delegate :plan, :actual, to: :work_performance, prefix: true, allow_nil: true
+  delegate :plan, :actual, :spent_hour, :burned_hour, :estimated_story,
+    :burned_story, :estimated_task, to: :work_performance, prefix: true, allow_nil: true
   delegate :name, to: :user, prefix: true, allow_nil: true
 
   def get_remaining_activity
