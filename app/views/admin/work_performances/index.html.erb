@@ -1,25 +1,7 @@
 <%= render "shared/category_tab", project: @project, active_tab: @sprint.id, f: nil %>
 <div id="work-performance-datas">
   <table class="table table-striped tbl-work-performance-datas">
-    <thead>
-      <tr>
-        <th class="th"></th>
-        <th class="activity"><%= t "table.thead.activity" %></th>
-        <th class="assigned"><%= t "table.thead.assigned" %></th>
-        <% @phases.each do |phase| %>
-          <th colspan="2" class="phase-name"><%= phase.phase_name %></th>
-        <% end %>
-      </tr>
-      <tr>
-        <th class="th"></th>
-        <th class="activity"></th>
-        <th class="assigned"></th>
-        <% @phases.each do |phase| %>
-          <th class="phase-value"><%= t "table.thead.plan" %></th>
-          <th class="phase-value"><%= t "table.thead.actual" %></th>
-        <% end %>
-      </tr>
-    </thead>
+    <%= render "header_cell" %>
     <tbody>
       <% @activities.each_with_index.map do |activity, index| %>
         <tr>
@@ -38,7 +20,17 @@
               <td class="phase-value" id="actual-<%= activity.id %>">
                 <%= activity.work_performance_actual %>
               </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             <% else %>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
             <% end %>

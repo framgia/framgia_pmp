@@ -112,8 +112,13 @@ en:
     thead:
       activity: "Activity"
       assigned: "Assigned for"
-      plan: "P"
-      actual: "A"
+      plan: "Plan"
+      actual: "Actual"
+      spent_hour: "Spent hour"
+      burned_hour: "Burned hour"
+      estimate_hour: "Estimated story"
+      burned_story: "Burned story"
+      estimate_task: "Estimated task"
   date:
     format: "dd-mm-yyyy"
     rb_format: "%d-%m-%Y"

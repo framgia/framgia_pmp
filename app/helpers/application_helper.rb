@@ -31,9 +31,7 @@ module ApplicationHelper
     end
   end
 
-  def product_backlog_class product_backlog
-    remaining_time = product_backlog.remaining
-    estimate_time = product_backlog.estimate
+  def product_backlog_class estimate_time, remaining_time
     if (remaining_time == 0 && estimate_time == 0) || remaining_time.nil?
       "default"
     else
