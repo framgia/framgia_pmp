@@ -18,7 +18,7 @@
         <tbody>
           <% @product_backlogs.each_with_index do |product_backlog, index| %>
             <%= render "product_backlog", product_backlog: product_backlog, index: index,
-              type: product_backlog_class(product_backlog) %>
+              type: product_backlog_class(product_backlog.total_estimation_time, product_backlog.total_remaining_time) %>
           <% end %>
         </tbody>
       </table>
