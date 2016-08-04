@@ -26,9 +26,18 @@ group :development, :test do
   gem "i18n-tasks"
   gem "rspec-rails"
   gem "fabrication"
+  gem "factory_girl_rails"
 end
 
 group :development do
   gem "web-console", "~> 2.0"
   gem "spring"
+end
+
+group :test do
+  gem "shoulda-matchers"
+  gem "shoulda-callback-matchers", "~> 1.1.1"
+  gem "simplecov", require: false
+  gem "simplecov-rcov", require: false
+  gem "rails-controller-testing"
 end
