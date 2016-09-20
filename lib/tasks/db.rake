@@ -85,13 +85,14 @@ namespace :db do
     end
 
     puts "Create work performances value"
-    Activity.all.each do |activity|
-      assignee = project.assignees.sample
-      Sprint.first.master_sprints.each do |day|
+    sprint = Sprint.first
+    sprint.activities.each do |activity|
+
+      sprint.master_sprints.each do |day|
         project.phase_items.each do |item|
-          Fabricate :work_performance, phase_id: 2, sprint_id: 1, master_sprint_id: day.id,
-            assignee_id: assignee.id, activity_id: activity.id, item_performance_id: item.item_performance_id,
-            performance_value: Random.rand(10 .. 30)
+          Fabricate :work_performance, phase_item_id: item.id,
+            sprint_id: sprint.id, master_sprint_id: day.id,
+            activity_id: activity.id, user_id: activity.user_id
         end
       end
     end

@@ -1,11 +1,12 @@
 class Admin::WorkPerformancesController < ApplicationController
+  include WorkPerformanceHelper
   load_and_authorize_resource
   load_and_authorize_resource :project
   load_and_authorize_resource :sprint
 
   def index
-    @phases = Phase.all
     @activities = @sprint.activities
+    @data_performance_of_team = work_performance_of_team @sprint
   end
 
   def update

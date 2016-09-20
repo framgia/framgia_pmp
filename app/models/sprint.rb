@@ -9,6 +9,7 @@ class Sprint < ActiveRecord::Base
   has_many :log_works
   has_many :master_sprints
   has_many :item_performances, through: :project
+  has_many :work_performances
 
   delegate :phases, to: :project, prefix: true, allow_nil: true
 

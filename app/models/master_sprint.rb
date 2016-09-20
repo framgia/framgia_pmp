@@ -3,7 +3,7 @@ class MasterSprint < ActiveRecord::Base
 
   has_many :time_logs
   has_many :log_works
-  belongs_to :sprint
+  has_many :work_performances
 
   before_create :set_date_and_day
   after_create :create_log_times_and_log_works

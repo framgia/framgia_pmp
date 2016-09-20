@@ -1,5 +1,4 @@
 class Phase < ActiveRecord::Base
-  has_many :work_performances
   has_many :phase_items
 
   PHASE_ATTRIBUTES_PARAMS = [:phase_name, :description]

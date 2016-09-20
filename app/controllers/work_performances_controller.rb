@@ -1,12 +1,13 @@
 class WorkPerformancesController < ApplicationController
+  include WorkPerformanceHelper
   load_resource
   load_resource :project
   load_resource :sprint
 
   def index
     @sprints = Sprint.list_by_user current_user
-    @phases = Phase.all
     @activities = @sprint.activities
+    @data_performance_of_team = work_performance_of_team @sprint
   end
 
   def update
