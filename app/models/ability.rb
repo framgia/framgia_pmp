@@ -7,7 +7,7 @@ class Ability
       can [:update], User, id: user.id
       can [:show], User
       can :read, Project
-      can :read, WorkPerformance
+      can [:read, :create, :update], WorkPerformance, assignee_id: user.id
       can :read, Sprint
     else
       can :manage, Project, manager_id: user.id

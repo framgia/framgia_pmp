@@ -13,6 +13,7 @@ class Activity < ActiveRecord::Base
   end
   scope :of_product_backlog, -> product_backlog_id{where product_backlog_id: product_backlog_id}
   scope :fitler_log_works, ->sprint{includes(:log_works).where(sprint: sprint)}
+  scope :of_user_in_sprint, ->(user, sprint){where user_id: user.id, sprint_id: sprint.id}
 
   delegate :name, to: :user, prefix: true, allow_nil: true
 

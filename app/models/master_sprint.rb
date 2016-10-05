@@ -8,6 +8,8 @@ class MasterSprint < ActiveRecord::Base
   before_create :set_date_and_day
   after_create :create_log_times_and_log_works
 
+  scope :in_today, ->{where date: Date.today}
+
   private
   def create_log_times_and_log_works
     sprint.assignees.each do |assignee|

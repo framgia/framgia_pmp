@@ -1,45 +1,39 @@
-<%= form_for @work_performance, url: project_sprint_work_performance_path(@project,
-  @sprint, @work_performance), remote: true, html: {role: "form"},
-  method: :patch do |f| %>
-  <div id="error_explanation" class="bg-danger text-danger">
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group">
-        <%= f.label :description, class: "control-label" %>
-        <%= f.text_field :description, class: "form-control first_input"  %>
+<div class="form-create-wpd">
+  <%= form_for [project, sprint, work_performance],
+    html: {id: "form-input-wpd"} do |f| %>
+    <div id="error_explanation" class="bg-danger text-danger">
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label><%= t "work_performances.day" %></label><br>
+        <%= f.select :master_sprint_id,
+          sprint.master_sprints.collect {|day| [day.date.to_s(:long), day.id]},
+          {selected: sprint.master_sprints.in_today.first.id},
+          {class: "form-control"} %>
+        <br>
+        <%= f.label :activity %><br>
+        <%= f.select :activity_id,
+          Activity.of_user_in_sprint(current_user, @sprint)
+          .collect {|a| [a.subject, a.id]}, {}, {class: "form-control"} %>
+        <br>
+      </div>
+      <div class="col-sm-6">
+        <% work_performances.each do |work_performance| %>
+          <%= fields_for "work_performances[]", work_performance do |wpd| %>
+            <div id="wpd-input-<%= work_performance.item_performance_id %>">
+              <%= wpd.hidden_field :assignee_id, value: current_user.id %>
+              <%= wpd.hidden_field :sprint_id, value: @sprint.id %>
+              <%= wpd.hidden_field :item_performance_id, value: work_performance.item_performance_id %>
+              <label><%= work_performance.item_performance_name %></label>
+              <%= wpd.number_field :performance_value, class: "form-control" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <hr>
+      <div class="form-group submit_update">
+        <%= f.submit t("work_performances.save"), class: "btn btn-primary" %>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="form-group">
-        <%= f.label :actual, class: "control-label" %>
-        <%= f.number_field :actual, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :spent_hour, class: "control-label" %>
-        <%= f.number_field :spent_hour, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :burned_hour, class: "control-label" %>
-        <%= f.number_field :burned_hour, class: "form-control" %>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="form-group">
-        <%= f.label :estimated_story, class: "control-label" %>
-        <%= f.number_field :estimated_story, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :burned_story, class: "control-label" %>
-        <%= f.number_field :burned_story, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :estimated_task, class: "control-label" %>
-        <%= f.number_field :estimated_task, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group submit_update">
-      <%= f.submit t("work_performances.update"), class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

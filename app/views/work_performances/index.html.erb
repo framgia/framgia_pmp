@@ -6,6 +6,13 @@
           data-sprint="<%= @sprint.id %>">
         </div>
         <div class="chart-type">
+          <% if Activity.of_user_in_sprint(current_user, @sprint).any? %>
+            <%= link_to t("work_performances.submitwpd"), "",
+              class: "btn btn-primary", id: "create-work-performance", type: "button",
+              data: {project: @project.id, sprint: @sprint.id,
+              toggle: "modal", target: "#dialog"} %>
+          <% end %>
+
           <i id="user-reset" class="glyphicon glyphicon-refresh"></i><br><br>
           <% ItemPerformance.chart_types.each do |key, value| %>
             <%= radio_button_tag "chart_type", value, class: "chart_type_radio" %>
