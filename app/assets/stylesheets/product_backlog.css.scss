@@ -72,21 +72,21 @@
   padding-left: 0px;
 }
 
-#tbl-product-backlog {
+#tbl-product-backlog, #tbl-product-backlog_body {
   .id {
     width: 5%;
   }
 
   .story-id {
-    width: 5%;
+    width: 10%;
   }
 
   .category {
-    width: 15%;
+    width: 12%;
   }
 
   .story {
-    width: 40%;
+    width: 20%;
   }
 
   .sprint {
@@ -94,22 +94,47 @@
   }
 
   .priority {
-    width: 5%;
+    width: 10%;
   }
 
   .estimate {
-    width: 5%;
+    width: 10%;
   }
 
   .actual {
-    width: 5%;
+    width: 8%;
   }
 
   .remaining {
-    width: 5%;
+    width: 10%;
   }
 
   .action {
     width: 5%;
   }
+}
+
+.body-product-backlog {
+  height:350px;
+  overflow-x:hidden;
+}
+
+.tbl1-product-backlog, .tbl1-product-backlog tr th {
+  border: 1px solid white;
+}
+
+.tbl1-product-backlog {
+  width: 98.1182%;
+}
+
+.tbl2-product-backlog {
+  width: 99.6%;
+}
+
+.tbl2-product-backlog, .tbl2-product-backlog tr td {
+  border: 1px solid black;
+}
+
+.tbl_product_backlog {
+  width:100%;
 }

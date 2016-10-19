@@ -2,7 +2,7 @@
   <%= hidden_field_tag "product_backlogs[#{product_backlog.id}][id]",
     product_backlog.id %>
   <td class="id"><%= index + 1 %>
-  <td class="id"><%= text_field_tag "product_backlogs[#{product_backlog.id}][story_id]",
+  <td class="story-id"><%= text_field_tag "product_backlogs[#{product_backlog.id}][story_id]",
     product_backlog.story_id, title: "#{product_backlog.story_id}",
     class: "product-backlog-story" %>
   </td>

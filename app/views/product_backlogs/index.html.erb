@@ -1,29 +1,43 @@
 <div class="container" id="product_backlogs">
   <div class="product_backlog">
     <%= form_for :product_backlog, html: {id: "product_backlog_form"}  do |f| %>
-      <table class="table table-bordered" id="product_backlogs">
-        <thead id="tbl-product-backlog">
-          <tr>
-            <th class="id">#</th>
-            <th class="story-id"><%= t "product_backlog.index.id" %></th>
-            <th class="category"><%= t "product_backlog.index.category" %></th>
-            <th class="story"><%= t "product_backlog.index.story" %></th>
-            <th class="sprint"><%= t "product_backlog.index.sprint" %></th>
-            <th class="priority"><%= t "product_backlog.index.priority" %></th>
-            <th class="estimate"><%= t "product_backlog.index.estimate" %></th>
-            <th class="actual"><%= t "product_backlog.index.actual" %></th>
-            <th class="remaining"><%= t "product_backlog.index.remaining" %></th>
-            <th class="action"><%= t "product_backlog.index.action" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @product_backlogs.each_with_index do |product_backlog, index| %>
-            <%= render "product_backlog", product_backlog: product_backlog, index: index,
-              type: product_backlog_class(product_backlog) %>
-          <% end %>
-        </tbody>
+      <table cellspacing="0" cellpadding="0" class="tbl_product_backlog">
+        <tr>
+          <td>
+            <table cellspacing="0" cellpadding="1" class="tbl1-product-backlog">
+              <tr id="tbl-product-backlog">
+                <th class="id">#</th>
+                <th class="story-id"><%= t "product_backlog.index.id" %></th>
+                <th class="category"><%= t "product_backlog.index.category" %></th>
+                <th class="story"><%= t "product_backlog.index.story" %></th>
+                <th class="sprint"><%= t "product_backlog.index.sprint" %></th>
+                <th class="priority"><%= t "product_backlog.index.priority" %></th>
+                <th class="estimate"><%= t "product_backlog.index.estimate" %></th>
+                <th class="actual"><%= t "product_backlog.index.actual" %></th>
+                <th class="remaining"><%= t "product_backlog.index.remaining" %></th>
+                <th class="action"><%= t "product_backlog.index.action" %></th>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="body-product-backlog">
+              <table cellspacing="0" cellpadding="1"
+                id="product_backlogs" class="tbl2-product-backlog">
+                <tbody id ="tbl-product-backlog_body">
+                  <% @product_backlogs.each_with_index do |product_backlog, index| %>
+                    <%= render "product_backlog", product_backlog: product_backlog, index: index,
+                      type: product_backlog_class(product_backlog) %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            </td>
+        </tr>
       </table>
     <% end %>
+    <br>
     <div id="product-backlogs">
       <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-plus",
         project_id: @project.id), project_product_backlogs_path({project_id: @project.id}),
