@@ -8,6 +8,7 @@ $(document).on("click", ".delete-product-backlog", function(e){
       success: function() {
         $("#backlog-row-"+ product_backlog_id).remove();
         $("#notify-message").text(I18n.t("product_backlogs.delete.success")).css("color", "green");
+        change_style_table();
       },
       error: function(){
         $("#notify-message").text(I18n.t("product_backlogs.delete.failed")).css("color", "red");
@@ -18,9 +19,20 @@ $(document).on("click", ".delete-product-backlog", function(e){
 $(document).ready(function(){
   $(".product-backlog-story").tooltip();
   $(".product-backlog-category").tooltip();
+  change_style_table();
+  $('.tbl1-product-backlog').width('96.3%');
 });
 
+function change_style_table(){
+  if($('#tbl-product-backlog_body').height()<335){
+    $('.tbl2-product-backlog').width('96.27%');
+  }else{
+    $('.tbl2-product-backlog').width('97.7%');
+  }
+}
+
 $(document).on("page:change", function() {
+  change_style_table();
   $("#product_backlogs").on("click", "#add-more-row", function(e){
     var project_id = $(this).find("span").attr("project_id");
     var url = $(this).attr("href");
@@ -33,6 +45,7 @@ $(document).on("page:change", function() {
         var row_number = result.row_number;
         $("table#product_backlogs tbody").append(result.content);
         $(".product-backlog-category-" + row_number).focus();
+        change_style_table();
       },
       error: function(){
         $("#notify-message").text(I18n.t("product_backlogs.delete.failed")).css("color", "red");
@@ -54,7 +67,7 @@ $(document).on("page:change", function() {
       },
       error: function(data) {
         $("#notify-message").text(I18n.t("product_backlogs.failed")).css("color", "red");
-        }
+      }
     });
   });
 
