@@ -1,0 +1,77 @@
+<%= render "shared/category_tab", project: @project, active_tab: @sprint.id, f: nil %>
+  <div id="wrapper">
+    <div class="row">
+      <div id="performance_chart" data-project="<%= @project.id %>"
+        data-sprint="<%= @sprint.id %>">
+      </div>
+      <div class="chart-type">
+        <%= link_to t("work_performances.submitwpd"),
+          new_project_sprint_work_performance_path(@project, @sprint),
+          class: "btn btn-primary", id: "create-work-performance", type: "button",
+          data: {project: @project.id, sprint: @sprint.id,
+          toggle: "modal", target: "#dialog"} %>
+
+        <i id="user-reset" class="glyphicon glyphicon-refresh"></i><br><br>
+        <% ItemPerformance.chart_types.each do |key, value| %>
+          <%= radio_button_tag "chart_type", value, class: "chart_type_radio" %>
+          <%= key.humanize.capitalize %>
+          <br>
+        <% end %>
+        <%= radio_button_tag "chart_type", "", class: "chart_type_radio" %>
+        <%= t "item_performances.showall" %><br>
+        <br>
+        <% @sprint.users.each do |user| %>
+          <%= check_box_tag "user-select-id-#{user.id}",
+            user.id, true, class: "user-select" %>
+          <%= user.name %><br>
+        <% end %>
+      </div>
+    </div>
+    <div id="work-performance-datas">
+      <table class="table table-striped tbl-work-performance-datas">
+        <thead>
+          <tr>
+            <th class="th"></th>
+            <th class="task"><%= t "table.thead.task" %></th>
+            <th class="assigned"><%= t "table.thead.assigned" %></th>
+            <% @sprint.project_phases.each do |phase| %>
+              <th colspan="10" class="phase-name"><%= phase.phase_name %></th>
+            <% end %>
+          </tr>
+          <tr>
+            <th class="th"></th>
+            <th class="task"></th>
+            <th class="assigned"></th>
+            <% @sprint.project_phases.each do |phase| %>
+              <% @sprint.master_sprints.each do |day_sprint| %>
+                <th class="phase-value" title="<%= day_sprint.day %>">
+                  <%= day_sprint.day %>
+                </th>
+              <% end %>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tasks.each_with_index.map do |task, index| %>
+            <tr>
+              <td class="th"><%= index + 1 %></td>
+              <td class="left">
+                <%= link_to "#{task.subject}", "#", remote: true %>
+              </td>
+              <td class="assigned"><%= task.user_name %></td>
+              <% @sprint.project_phases.each do |phase| %>
+                <% @sprint.master_sprints.each do |day_sprint| %>
+                  <td>
+                    <% task.work_performances.in_day(day_sprint).each do |wpm| %>
+                      <%= wpm.performance_value %> <br>
+                    <% end %>
+                  </td>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<%= render "work_performances/dialog" %>

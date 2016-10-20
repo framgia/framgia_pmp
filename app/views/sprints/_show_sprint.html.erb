@@ -1,0 +1,13 @@
+<%= form_for [@project, @sprint], html: {id: "lost_hour_form"} do |f| %>
+  <%= render "shared/category_tab", project: @project, active_tab: @sprint.id, f: f %>
+  <div id="sprints">
+    <div class="row" id="chart">
+      <div id="burndown_chart"></div>
+      <%= render "lost_hour", sprint: @sprint, project: @project,
+        assignees: @sprint.assignees, f: f %>
+    </div>
+    <%= render "activities", f: f %>
+  </div>
+  <%= hidden_field_tag :project_id, @project.id %>
+  <%= hidden_field_tag :sprint_id, @sprint.id %>
+<% end %>
