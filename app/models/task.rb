@@ -36,6 +36,10 @@ class Task < ActiveRecord::Base
     log_works.last.remaining_time
   end
 
+  def estimate_time
+    log_works.first.remaining_time
+  end
+
   private
   def create_log_works
     self.sprint.master_sprints.each do |master_sprint|
