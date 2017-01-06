@@ -4,8 +4,9 @@ class LogWork < ActiveRecord::Base
   belongs_to :task
   belongs_to :master_sprint
   belongs_to :sprint
-  after_update :update_actual_time, :update_remaining_time, 
-    :update_performance_of_spent_time
+  belongs_to :product_backlog
+  after_update :update_actual_time, :update_remaining_time,
+    :update_performance_of_spent_time, :update_performance_of_burn_story
 
   private
   def update_actual_time
