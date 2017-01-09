@@ -4,6 +4,7 @@ class WorkPerformance < ActiveRecord::Base
   belongs_to :item_performance
   belongs_to :sprint
   belongs_to :master_sprint
+  belongs_to :product_backlog
   has_one :user, through: :task
 
   validates :performance_value, presence: true, numericality: {only_float: true,
@@ -32,6 +33,10 @@ class WorkPerformance < ActiveRecord::Base
   scope :of_task_in_day, ->(task_id, day_id, item_id) do
     where task_id: task_id,
     master_sprint_id: day_id, item_performance_id: item_id
+  end
+  scope :of_story_in_day, ->(product_backlog_id, day_id, item_id) do
+    where product_backlog_id: product_backlog_id,
+      master_sprint_id: day_id,  item_performance_id: item_id
   end
 
   def item_performance_name

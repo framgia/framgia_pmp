@@ -3,11 +3,15 @@ class ProductBacklog < ActiveRecord::Base
   belongs_to :sprint
 
   has_many :tasks
+  has_many :work_performances
+  has_many :log_works
 
   delegate :name, to: :project, prefix: true
   delegate :name, :id, to: :sprint, prefix: true, allow_nil: true
 
   scope :with_ids, ->ids{where id: ids}
+
+  scope :remaining_time_zero, ->{where remaining: 0}
 
   def total_remaining_time
     if self.tasks.any?
