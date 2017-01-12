@@ -8,6 +8,7 @@ class ProductBacklog < ActiveRecord::Base
   delegate :name, :id, to: :sprint, prefix: true, allow_nil: true
 
   scope :with_ids, ->ids{where id: ids}
+  scope :remaining_time_zero, ->{where remaining: 0.0}
 
   def total_remaining_time
     if self.tasks.any?
