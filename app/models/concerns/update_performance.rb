@@ -2,8 +2,7 @@ module UpdatePerformance
   extend ActiveSupport::Concern
 
   def update_performance_of_spent_time
-    item_spent_time = ItemPerformance.find_by performance_name:
-      ItemPerformance.performance_names[:spent_time]
+    item_spent_time = ItemPerformance.find_by performance_name: :spent_time
     if item_spent_time
       wpd = sprint.work_performances.of_task_in_day(self.task_id,
         self.master_sprint_id, item_spent_time.id)
@@ -15,6 +14,25 @@ module UpdatePerformance
           item_performance_id: item_spent_time.id,
           master_sprint_id: self.master_sprint.id,
           performance_value: spent_time
+      end
+    end
+  end
+
+  def update_performance_of_burn_story
+    item_burn_story = ItemPerformance.find_by performance_name: :burn_story
+    if item_burn_story
+      wpds = sprint.work_performances.performances_in_day(self.master_sprint_id,
+        item_burn_story.id)
+      total_burn_story = ProductBacklog.remaining_time_zero.count
+      if wpds.any?
+        wpds.each do |wpd|
+          wpd.update_attributes performance_value: total_burn_story
+        end
+      else
+        wpds.create sprint_id: self.sprint.id,
+          item_performance_id: item_burn_story.id,
+          master_sprint_id: self.master_sprint.id,
+          performance_value: total_burn_story
       end
     end
   end
