@@ -7,7 +7,14 @@ module UpdatePerformance
     if item_spent_time
       wpd = sprint.work_performances.of_task_in_day(self.task_id,
         self.master_sprint_id, item_spent_time.id)
-      spent_time = get_previous_logwork.remaining_time - self.remaining_time
+      wpd_prev = sprint.work_performances.of_task_in_day(self.task_id,
+        self.master_sprint_id - 1, item_spent_time.id)
+      if wpd_prev.any?
+        spent_time = wpd_prev.first.performance_value
+        spent_time += get_previous_logwork.remaining_time - self.remaining_time
+      else
+        spent_time = get_previous_logwork.remaining_time - self.remaining_time
+      end
       if wpd.any?
         wpd.first.update_attributes performance_value: spent_time
       else
