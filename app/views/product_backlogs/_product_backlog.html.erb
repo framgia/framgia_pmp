@@ -25,7 +25,7 @@
     product_backlog.priority, class: "center" %>
   </td>
   <td class="estimate"><%= text_field_tag "product_backlogs[#{product_backlog.id}][estimate]",
-    product_backlog.estimate, class: "center" %>
+    product_backlog.calculate_estimate_time_of_story, class: "center" %>
   </td>
   <td class="actual"><%= text_field_tag "product_backlogs[#{product_backlog.id}][actual]",
     product_backlog.calculate_actual_time, class: "center" %>
