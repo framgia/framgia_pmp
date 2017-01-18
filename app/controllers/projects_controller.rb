@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   autocomplete :user, :name, full: true, extra_data: [:id]
 
   def index
-    @projects = current_user.projects
+    @projects = current_user.projects.is_not_closed
   end
 
   def new

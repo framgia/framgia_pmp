@@ -25,7 +25,8 @@ class Project < ActiveRecord::Base
 
   delegate :name, to: :manager, prefix: true, allow_nil: true
 
-  scope :is_not_closed, ->{where.not status: 3}
+  scope :is_not_closed, ->{where.not status: statuses[:close]}
+  scope :is_closed, ->{where status: statuses[:close]}
 
   def include_assignee? current_user
     self.members.map(&:user_id).include? current_user.id

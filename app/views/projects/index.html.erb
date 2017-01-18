@@ -1,38 +1,54 @@
-<div id="projects">
-  <h2>
-    <%= t "layout.projects" %>
-    <% if can? :create, Project %>
-      <%= link_to new_project_path, class: "btn btn-info pull-right",
-        title: t("projects.new") do %>
-        <i class="fa fa-plus" aria-hidden="true"></i>
+<div class="row">
+  <div class="col-md-8">
+    <div id="projects">
+      <h2>
+        <%= t "layout.projects" %>
+        <% if can? :create, Project %>
+          <%= link_to new_project_path, class: "btn btn-info pull-right",
+            title: t("projects.new") do %>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </h2>
+      <div id="search-project">
+        <div class= "col-md-1">
+          <label for="q" id="label-search">
+            <a href="#"><%= t "projects.search" %></a>
+          </label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" id = "q" placeholder="input search"
+            type="text" name="">
+        </div>
+      </div>
+      <% if @projects.any? %>
+        <table class="table table-striped" id="tbl-list-project">
+          <thead>
+            <tr>
+              <th class="id"><%= t "projects.table.thead.id" %></th>
+              <th class="name"><%= t "projects.table.thead.name" %></th>
+            </tr>
+          </thead>
+          <% @projects.each_with_index do |project, index| %>
+            <tr>
+              <td class="id"><%= index + 1 %></td>
+              <td class="name">
+                <%= link_to project.name, project_path(project) %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
       <% end %>
-    <% end %>
-  </h2>
-  <% if @projects.any? %>
-    <table class="table table-striped" id="tbl-list-project">
-      <thead>
-        <tr>
-          <th class="id"><%= t "projects.table.thead.id" %></th>
-          <th class="name"><%= t "projects.table.thead.name" %></th>
-          <th class="description"><%= t "projects.table.thead.description" %></th>
-          <th class="manager"><%= t "projects.table.thead.manager" %></th>
-          <th class="start-date"><%= t "projects.table.thead.start_date" %></th>
-        </tr>
-      </thead>
-      <% @projects.each_with_index do |project, index| %>
-        <tr>
-          <td class="id"><%= index + 1 %></td>
-          <td class="name"><%= link_to project.name, project_path(project) %></td>
-          <td class="description"><%= project.description %></td>
-          <td class="manager">
-            <% project.managers.each_with_index do |manager, index| %>
-              <%= link_to manager.user_name, "#" %>
-              <%= (index == project.managers.size - 1)  ? "" : "," %>
-            <% end %>
-          </td>
-          <td class="start-date"><%= project.start_date %></td>
-        </tr>
-      <% end %>
-    </table>
-  <% end %>
+    </div>
+  </div>
+  <div class="col-md-4" id="right">
+    <div id="right-project">
+      <div class="checkbox box1">
+        <label for="closed">
+          <input id="closed" type="checkbox" value="" name="closed">
+          <%= t "projects.view_closed_projects"%>
+        </label>
+      </div>
+    </div>
+  </div>
 </div>
