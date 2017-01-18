@@ -38,12 +38,17 @@ module WorkPerformanceHelper
 
     item_data = {name: item_phase.alias, data: [], visible: visible}
     sprint.master_sprints.order(:day).each do |day|
-      item_value = 0
-      user_ids.each do |user_id|
-        user = User.find_by id: user_id
-        next if user.nil?
-        item_value += user.work_performances.performances_in_day(item.id, day)
-          .sum(:performance_value)
+      if item.burn_story?
+        wpds = sprint.work_performances.performances_in_day(item.id, day)
+        item_value = wpds.any? ? wpds.first.performance_value : 0
+      else
+        item_value = 0
+        user_ids.each do |user_id|
+          user = User.find_by id: user_id
+          next if user.nil?
+          item_value += user.work_performances.performances_in_day(item.id, day)
+            .sum(:performance_value)
+        end
       end
       item_data[:data] << item_value
     end

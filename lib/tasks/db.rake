@@ -66,12 +66,7 @@ namespace :db do
         sprint_id: Sprint.first.id, product_backlog_id: ProductBacklog.first.id
       start_log_work = 8
       ac.log_works.each do |log_work|
-        if start_log_work > 0
-          log_work.update_attributes remaining_time: start_log_work - 1
-          start_log_work -= 1
-        else
-          log_work.update_attributes remaining_time: start_log_work
-        end
+        log_work.update_attributes remaining_time: start_log_work
       end
     end
 
