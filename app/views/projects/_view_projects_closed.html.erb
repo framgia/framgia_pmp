@@ -1,0 +1,8 @@
+<% @projects.each_with_index do |project, index| %>
+  <tr>
+    <td class="id"><%= index + 1 %></td>
+    <td class="name">
+      <%= link_to project.name, project_path(project) %>
+    </td>
+  </tr>
+<% end %>

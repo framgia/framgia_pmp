@@ -64,6 +64,8 @@ en:
     end_date: "End date"
     saved: "Saved"
     failed: "Failed"
+    search: "Search"
+    view_closed_projects: View closed projects
   work_performances:
     view: "Work Performances Data"
     update: "Update"

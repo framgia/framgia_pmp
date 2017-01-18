@@ -1,6 +1,20 @@
 class Api::ProjectsController < ApplicationController
   load_and_authorize_resource
 
+  def index
+    @projects = current_user.projects.where(status: params[:status])
+    respond_to do |format|
+      format.json do
+        render json: {
+          content: render_to_string(
+            partial: "/projects/view_projects_closed", formats: "html",
+              layout: false
+          ), projects: @projects
+        }
+      end
+    end
+  end
+
   def show
     @users = User.not_in_project(@project.members.pluck(:user_id))
       .search(params[:term])

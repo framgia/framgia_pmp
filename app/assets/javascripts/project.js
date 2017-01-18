@@ -115,3 +115,34 @@ function resetMemberIndex(){
     $(this).find('.index').html(index + 1);
   });
 }
+
+$(document).on('page:change', function(){
+  $('#closed').click(function() {
+    if ($('#closed').is(':checked')) {
+      $(this).val("closed");
+      var status = 2;
+      $.ajax({
+        url: 'api/projects',
+        type: 'get',
+        data: {status: status},
+        dataType: 'json',
+        success: function(data){
+          $('table#tbl-list-project tbody').empty();
+          $('table#tbl-list-project tbody').append(data.content);
+        }
+      });
+    } else {
+      $(this).val("not_closed");
+      $.ajax({
+        url: 'projects',
+        type: 'get',
+        data: {status: "projects_is_not_closed"},
+        dataType: 'json',
+        success: function(data){
+          $('table#tbl-list-project tbody').empty();
+          $('table#tbl-list-project tbody').append(data.content);
+        }
+      });
+    }
+  });
+});

@@ -3,8 +3,16 @@
   margin-right: 0px;
   margin-left: 0px;
 
+  #search-project {
+    padding-left: 30px;
+    margin-bottom: 50px;
+    #label-search {
+      padding-top: 6px;
+    }
+  }
+
   h2 {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .title {
@@ -144,7 +152,7 @@
   #tbl-list-project {
     .id {
       width: 3%;
-      text-align: right;
+      text-align: center;
     }
 
     .name {
@@ -170,6 +178,27 @@
       width: 10%;
       text-align: center;
     }
+  }
+}
+
+#right {
+  margin-top: 0px;
+ background-color: #f6f6f6;
+}
+
+#right-project {
+  margin-top: 20px;
+  background-color: #f6f6f6;
+  height: 600px;
+
+  #closed {
+    padding-top: 20px;
+    padding-left: 20px;
+  }
+
+  .box1{
+    padding-top: 10px;
+    padding-left: 20px;
   }
 }
 

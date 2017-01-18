@@ -6,7 +6,21 @@ class ProjectsController < ApplicationController
   autocomplete :user, :name, full: true, extra_data: [:id]
 
   def index
-    @projects = current_user.projects
+    if params[:status].nil?
+      @projects = current_user.projects.is_not_closed
+    else
+      @projects = current_user.projects.is_not_closed
+      respond_to do |format|
+        format.json do
+          render json: {
+            content: render_to_string(
+              partial: "/projects/view_projects_closed", formats: "html",
+                layout: false
+            ), projects: @projects
+          }
+        end
+      end
+    end
   end
 
   def new
