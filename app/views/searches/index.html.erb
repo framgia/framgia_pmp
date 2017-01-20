@@ -10,17 +10,19 @@
           <% end %>
         <% end %>
       </h2>
-      <div id="search-project">
-        <form>
-          <div class= "col-md-2">
-            <label for="q" id="label-search">
-              <a href= "<%= searches_path %>"><%= t "projects.search" %></a>
-            </label>
+      <div id="searches" class= "col-md-10">
+        <%= search_form_for(@search, url: searches_path,
+          html: { method: :get }) do |f|%>
+          <div class="row">
+            <div class= "col-md-1 label-search-name">
+              <%= f.label :name %>
+            </div>
+            <div class= "col-md-8">
+              <%= f.text_field :name_cont, class: "form-control" %>
+            </div>
+            <div class="actions col-md-2"><%= f.submit %> </div>
           </div>
-          <div class= "col-md-5">
-            <input class="submit_on_enter form-control col-md-2" type="text" name="q" placeholder="Search...">
-          </div>
-        </form>
+        <% end %>
       </div>
       <% if @projects.any? %>
         <table class="table table-striped" id="tbl-list-project">
@@ -40,15 +42,9 @@
           <% end %>
         </table>
       <% end %>
-    </div>
-  </div>
-  <div class="col-md-4" id="right">
-    <div id="right-project">
-      <div class="checkbox box1">
-        <label for="closed">
-          <input id="closed" type="checkbox" value="" name="closed">
-          <%= t "projects.view_closed_projects"%>
-        </label>
+      <div class="page col-md-12">
+        <%= paginate @projects, theme: 'twitter-bootstrap-3' %>
+        <%= page_entries_info @projects %>
       </div>
     </div>
   </div>

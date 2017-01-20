@@ -22,6 +22,9 @@ gem "kaminari"
 gem "font-awesome-rails"
 gem "rails-jquery-autocomplete"
 gem "jquery-ui-rails"
+gem "ransack"
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 group :development, :test do
   gem "pry-rails"

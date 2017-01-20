@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :columns, only: [:create, :show, :destroy]
   resources :rows, only: [:create, :show]
   resource :rows, only: [:destroy]
-
+  resources :searches, only: [:index]
   resources :projects do
     resources :project_members
     resource :project_status, only: [:show, :update]

@@ -146,3 +146,16 @@ $(document).on('page:change', function(){
     }
   });
 });
+
+$(document).ready(function() {
+  $('.submit_on_enter').keydown(function(event) {
+    if (event.keyCode == 13) {
+      window.location.href("<%= searches_path %>");
+    }
+  });
+  $('.submit_on_enter').keyup(function(event) {
+    if (event.keyCode == 13) {
+      window.location.href("<%= searches_path %>");
+    }
+  });
+});
