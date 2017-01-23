@@ -272,6 +272,7 @@
 
 .ui-menu-item {
   height: 25px;
+  cursor: pointer;
 
   &:hover {
     background: $light-grey;
@@ -285,4 +286,9 @@
     background: $white;
     font-style: italic;
   }
+}
+
+.disabled {
+  background: $light-grey;
+  color: $black;
 }

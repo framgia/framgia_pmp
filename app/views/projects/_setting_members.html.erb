@@ -13,7 +13,9 @@
         <% @project.members.each_with_index do |member, index| %>
           <tr class="member-<%= member.id %>">
             <td class="index"><%= index +1 %></td>
-            <td class="member_name"><%= member.user_name %></td>
+            <td class="member_name" data-user-id="<%= member.user_id %>">
+              <%= member.user_name %>
+            </td>
             <td class="member_role"><%= member.role %></td>
             <td class="action">
               <span class="btn btn-primary btn-xs" id="edit_role_member">
@@ -37,9 +39,9 @@
       id: "form_add_member" do %>
       <div class="select_member">
         <strong><%= t "projects.settings.name" %>: </strong><br>
-        <%= autocomplete_field_tag :user_name, nil, api_project_path(@project),
+        <%= autocomplete_field_tag :user_name, nil, autocomplete_user_name_projects_path,
           data: {noMatchesLabel: t("projects.settings.nomatch")},
-          update_elements: {id: "user_id"},
+          update_elements: {id: "user_id"}, data: {delimiter: ","}, multiple: true,
           class: "form-control", id: "add_member_project",
           placeholder: t("projects.settings.add_member_input") %>
       </div>

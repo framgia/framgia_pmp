@@ -1,12 +1,5 @@
 $(document).on('page:change', function(){
   $('#setting_project a:first').tab('show');
-  $('#add_member_project').on('autocompleteopen', function(){
-    $('.ui-autocomplete').width($('#add_member_project').width());
-    $('div[role=status]').css('display', 'none');
-  });
-  $('#add_member_project').bind('railsAutocomplete.select', function(event, data){
-    $('#add_member_project').data('member_user_id', data.item.id);
-  });
 });
 
 $(document).mousedown(function(e) {
@@ -75,36 +68,11 @@ $(document).on('click', '#delete_member', function(){
       success: function(data){
         $tr.remove();
         resetMemberIndex();
+        $('#add_member').height($('#add_member').parent().height());
         $('#notify-message').text(I18n.t('projects.delete.success')).css('color', 'green');
       },
       error: function(){
         $('#notify-message').text(I18n.t('projects.delete.failed')).css('color', 'red');
-      }
-    });
-  }
-});
-
-$(document).on('submit', 'form#form_add_member', function(e){
-  e.preventDefault();
-  var url = $(this).attr('action');
-  var data = $(this).serializeArray();
-  var user_id = $('#add_member_project').data('member_user_id');
-  if (user_id){
-    data.push({name: 'user_id', value: user_id});
-  }
-  if ($('#add_member_project').val()){
-    $.ajax({
-      url: url,
-      type: 'post',
-      dataType: 'json',
-      data: data,
-      success: function(data){
-        $('#list_member_project table tbody').append(data.content);
-        $('#add_member_project').val('');
-        $('#notify-message').text(I18n.t('projects.saved')).css('color', 'green');
-      },
-      error: function(data){
-        $('#notify-message').text(I18n.t('projects.failed')).css('color', 'red');
       }
     });
   }

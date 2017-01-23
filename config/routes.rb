@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resource :rows, only: [:destroy]
 
   resources :projects do
+    get :autocomplete_user_name, on: :collection
     resources :project_members
     resource :project_status, only: [:show, :update]
     resources :product_backlogs, except: [:destroy]
