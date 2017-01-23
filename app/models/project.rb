@@ -21,10 +21,7 @@ class Project < ActiveRecord::Base
   after_create :create_product_backlog, :update_status
 
   DEFAULT_PRODUCT_BACKLOG = 10
-  PROJECT_ATTRIBUTES_PARAMS = [:name, :description, :start_date,
-    :end_date]
-
-  validate :check_end_date, on: [:create, :update]
+  PROJECT_ATTRIBUTES_PARAMS = [:name, :description, :start_date]
 
   delegate :name, to: :manager, prefix: true, allow_nil: true
 
@@ -45,11 +42,6 @@ class Project < ActiveRecord::Base
   end
 
   private
-  def check_end_date
-    if self.start_date.present? && self.end_date < self.start_date
-      errors.add :end_date, I18n.t("errors.wrong_end_date")
-    end
-  end
 
   def update_status
     if self.start_date.present? && self.start_date < Date.today

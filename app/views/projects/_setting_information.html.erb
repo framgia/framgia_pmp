@@ -31,13 +31,6 @@
             <%= f.text_field :start_date, class: "form-control datepicker", required: true,
               value: @project.start_date.nil? ? "" : @project.start_date.strftime(t "date.rb_format") %>
           </div>
-          <div class="col-md-2 text-right">
-            <span><%= f.label :end_date %></span>
-          </div>
-          <div class="col-md-3">
-            <%= f.text_field :end_date, class: "form-control datepicker", required: true,
-              value: @project.end_date.nil? ? "" : @project.end_date.strftime(t "date.rb_format") %>
-          </div>
         </div></br>
       </div>
     </div>

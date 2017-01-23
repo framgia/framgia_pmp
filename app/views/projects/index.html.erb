@@ -17,7 +17,6 @@
           <th class="description"><%= t "projects.table.thead.description" %></th>
           <th class="manager"><%= t "projects.table.thead.manager" %></th>
           <th class="start-date"><%= t "projects.table.thead.start_date" %></th>
-          <th class="end-date"><%= t "projects.table.thead.end_date" %></th>
         </tr>
       </thead>
       <% @projects.each_with_index do |project, index| %>
@@ -32,7 +31,6 @@
             <% end %>
           </td>
           <td class="start-date"><%= project.start_date %></td>
-          <td class="end-date"><%= project.end_date %></td>
         </tr>
       <% end %>
     </table>
