@@ -115,3 +115,32 @@ function resetMemberIndex(){
     $(this).find('.index').html(index + 1);
   });
 }
+
+$(document).on('click', '#delete_phase', function(){
+  var project = $('#list_phase_project').data('project');
+  var $tr = $(this).closest('tr');
+  var phase = parseInt($tr.attr('class').split('-').pop());
+  var answer = confirm(I18n.t('delete.confirm'));
+  if (answer){
+    $.ajax({
+      url: '/projects/'+project+'/project_phases/'+phase,
+      type: 'delete',
+      data: {id: phase},
+      dataType: 'json',
+      success: function(data){
+        $tr.remove();
+        resetPhaseIndex();
+        $('#notify-message').text(I18n.t('projects.delete.success')).css('color', 'green');
+      },
+      error: function(){
+        $('#notify-message').text(I18n.t('projects.delete.failed')).css('color', 'red');
+      }
+    });
+  }
+});
+
+function resetPhaseIndex(){
+  $('#list_phase_project tbody tr').each(function(index){
+    $(this).find('.index').html(index + 1);
+  });
+}

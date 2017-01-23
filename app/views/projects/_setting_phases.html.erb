@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-8" id="list_phase_project" data-project="<%= @project.id %>">
+    <table class="table table-inverse" >
+      <thead>
+        <tr>
+          <td class="index"><%= t "projects.settings.index" %> </td>
+          <td class="phase_name"><%= t "projects.settings.name" %> </td>
+          <td class="action"><%= t "projects.settings.action" %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.phases.each_with_index do |phase, index| %>
+          <tr class="phase-<%= phase.id %>">
+            <td class="index"><%= index +1 %></td>
+            <td class="phase_name"><%= phase.phase_name %></td>
+            <td class="action">
+              <span class="btn btn-primary btn-xs" id="edit_phase">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </span>
+              &ensp;
+              <span class="btn btn-danger btn-xs" id="delete_phase">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4" id="add_phase">
+    <center><h4><strong><%= t "projects.settings.add_phase" %></strong></h4></center>
+  <div>
+</div>

@@ -224,7 +224,7 @@
   margin-top: 30px;
 }
 
-#list_member_project {
+#list_member_project, #list_phase_project {
 
   padding-left: 0px;
   margin-top: 10px;
@@ -240,7 +240,7 @@
     width: 10%;
   }
 
-  .member_name {
+  .member_name, .phase_name {
     width: 50%;
   }
 
@@ -253,7 +253,7 @@
   }
 }
 
-#add_member {
+#add_member, #add_phase {
   margin-top: 10px;
   padding-left: 20px;
   border-left: 2px solid $boder-grey;

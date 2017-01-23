@@ -5,10 +5,13 @@
     <h3><%= @project.name %></h3>
     <ul class="nav nav-tabs" id="setting_project">
       <li>
-        <%= link_to t("projects.edit.infomation"), "#informations", data: {toggle: "tab"} %>
+        <%= link_to t("projects.show.information"), "#informations", data: {toggle: "tab"} %>
       </li>
       <li>
         <%= link_to t("projects.show.member"), "#project_members", data: {toggle: "tab"} %>
+      </li>
+      <li>
+        <%= link_to t("projects.show.phase"), "#project_phases", data:{toggle: "tab"} %>
       </li>
     </ul>
 
@@ -19,6 +22,10 @@
 
       <div class="tab-pane" id="project_members">
         <%= render "setting_members" %>
+      </div>
+
+      <div class="tab-pane" id="project_phases">
+        <%= render "setting_phases" %>
       </div>
     </div>
   </div>

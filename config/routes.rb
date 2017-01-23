@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :project_members
+    resources :project_phases
     resource :project_status, only: [:show, :update]
     resources :product_backlogs, except: [:destroy]
     delete "/product_backlogs", to: "product_backlogs#destroy"
