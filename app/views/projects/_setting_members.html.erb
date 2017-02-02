@@ -39,7 +39,7 @@
         <strong><%= t "projects.settings.name" %>: </strong><br>
         <%= autocomplete_field_tag :user_name, nil, api_project_path(@project),
           data: {noMatchesLabel: t("projects.settings.nomatch")},
-          update_elements: {id: "user_id"},
+          update_elements: {id: "user_id"}, data: {delimiter: ","}, multiple: true,
           class: "form-control", id: "add_member_project",
           placeholder: t("projects.settings.add_member_input") %>
       </div>

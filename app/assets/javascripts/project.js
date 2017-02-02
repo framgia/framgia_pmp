@@ -1,11 +1,31 @@
 $(document).on('page:change', function(){
   $('#setting_project a:first').tab('show');
-  $('#add_member_project').on('autocompleteopen', function(){
-    $('.ui-autocomplete').width($('#add_member_project').width());
-    $('div[role=status]').css('display', 'none');
+
+  setAutocompleteReturnItem();
+
+  $('div[role=status]').css('display', 'none');
+  $('#add_member_project').data('members', []);
+
+  setValueInputForMembers();
+
+  $('#add_member_project').on('input', function() {
+    if(!$('#add_member_project').val()){
+      $('#add_member_project').data('members', []);
+    }
   });
+
   $('#add_member_project').bind('railsAutocomplete.select', function(event, data){
-    $('#add_member_project').data('member_user_id', data.item.id);
+    event.preventDefault();
+    var users = [];
+    var members = $('#add_member_project').data('members');
+    for (var i in members){
+      users.push(members[i].user_name);
+    }
+    $('#add_member_project').val(users.join(','));
+  });
+
+  $('#add_member_project').click(function(){
+    $('#notify-message').text('');
   });
 });
 
@@ -14,7 +34,72 @@ $(document).mousedown(function(e) {
     var role = $('input#role_member[type=radio]:checked').next('span').html();
     $('input#role_member').closest('td').html(role);
   }
+
+  if ($('.ui-autocomplete').find(e.target).length == 0){
+    $('.ui-autocomplete').css('display', 'none');
+  }
+  else{
+    $('.ui-autocomplete').css('display', 'block');
+  }
 });
+
+function setAutocompleteReturnItem(){
+  $('#add_member_project').autocomplete({
+    create: function() {
+      $(this).data('ui-autocomplete')._renderItem = function (div, item) {
+        return $('<p></p>')
+          .append('<input type="checkbox" value="'+item.id+'" id="add_new_member"> '+
+            '<span>'+item.value+'</span>')
+          .appendTo(div);
+      };
+    }
+  });
+}
+
+function setValueInputForMembers(){
+  $('#add_member_project').on('autocompleteopen', function(){
+    $('.ui-autocomplete').width($('#add_member_project').width());
+    $('div[role=status]').css('display', 'none');
+    var member_to_add = $('#add_member_project').data('members');
+    for (var i in member_to_add){
+      $('p.ui-menu-item').find('input[value='+member_to_add[i].user_id+']').prop('checked', true);
+    }
+
+    $('p.ui-menu-item').click(function(e){
+      var users = [];
+      var $input = $(this).find('input');
+      var user_id = $input.val();
+      var user_name = $(this).find('span').html();
+      var member = {user_id: user_id, user_name: user_name};
+      var member_index = member_to_add.map(function(e) {return e.user_id;}).indexOf(user_id);
+      if (e.target.id == 'add_new_member'){
+        if ($input.is(':checked')){
+          member_to_add.push(member);
+        }
+        else{
+          if (member_index >= 0)
+            member_to_add.splice(member_index, 1);
+        }
+      }
+      else{
+        if ($input.is(':checked')){
+          $input.prop('checked', false);
+          if (member_index >= 0)
+            member_to_add.splice(member_index, 1);
+        }
+        else{
+          $input.prop('checked', true);
+          member_to_add.push(member);
+        }
+      }
+      for (var i in member_to_add){
+        users.push(member_to_add[i].user_name);
+      }
+      $('#add_member_project').val(users.join(','));
+    });
+    $('#add_member_project').data('members', member_to_add);
+  });
+}
 
 $(document).on('click', '#edit_role_member', function(e){
   var project = $('#list_member_project').data('project');
@@ -87,20 +172,26 @@ $(document).on('click', '#delete_member', function(){
 $(document).on('submit', 'form#form_add_member', function(e){
   e.preventDefault();
   var url = $(this).attr('action');
-  var data = $(this).serializeArray();
-  var user_id = $('#add_member_project').data('member_user_id');
-  if (user_id){
-    data.push({name: 'user_id', value: user_id});
+  var role = $(this).find('input[type=radio]:checked').val();
+  var users = $('#add_member_project').data('members');
+  if (users.length == 0 && $('#add_member_project').val()){
+    user_name = $('#add_member_project').val();
+    users = [{user_name: user_name}];
   }
-  if ($('#add_member_project').val()){
+  if (users.length > 0){
     $.ajax({
       url: url,
       type: 'post',
       dataType: 'json',
-      data: data,
+      data: {
+        role: role,
+        users: users,
+      },
       success: function(data){
+        $('.ui-autocomplete').css('display', 'none');
         $('#list_member_project table tbody').append(data.content);
         $('#add_member_project').val('');
+        var users = $('#add_member_project').data('members', []);
         $('#notify-message').text(I18n.t('projects.saved')).css('color', 'green');
       },
       error: function(data){
@@ -115,3 +206,7 @@ function resetMemberIndex(){
     $(this).find('.index').html(index + 1);
   });
 }
+
+$(document).on('click', '.ui-menu-item', function(e){
+  $('.ui-autocomplete').css('display', 'block');
+});

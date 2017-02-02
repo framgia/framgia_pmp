@@ -3,14 +3,13 @@ class ProjectMembersController < ApplicationController
   load_resource :project
 
   def create
-    @member = @project.members.build member_params
-    @member.save
+    @members = AddMembersToProject.new(@project, params).create
     respond_to do |format|
       format.json do
         render json: {
           content: render_to_string(
             partial: "/projects/new_member_row", formats: "html", layout: false,
-            locals: {row_number: @project.members.size, member: @member}
+            locals: {row_number: @project.members.size, members: @members}
           )
         }
       end

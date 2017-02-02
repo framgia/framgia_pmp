@@ -1,15 +1,17 @@
-<tr class="member-<%= member.id %>">
-  <td class="index"><%= row_number %></td>
-  <td class="member_name"><%= member.user_name %></td>
-  <td class="member_role"><%= member.role %></td>
-  <td class="action">
-    <span class="btn btn-primary btn-xs" id="edit_role_member">
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </span>
-    &ensp;
-    <span class="btn btn-danger btn-xs" id="delete_member">
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </span>
+<% members.each_with_index do |member, index| %>
+  <tr class="member-<%= member.id %>">
+    <td class="index"><%= row_number - members.size + index + 1 %></td>
+    <td class="member_name"><%= member.user_name %></td>
+    <td class="member_role"><%= member.role %></td>
+    <td class="action">
+      <span class="btn btn-primary btn-xs" id="edit_role_member">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </span>
+      &ensp;
+      <span class="btn btn-danger btn-xs" id="delete_member">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </span>
 
-  </td>
-</tr>
+    </td>
+  </tr>
+<% end %>
