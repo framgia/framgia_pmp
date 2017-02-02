@@ -26,6 +26,7 @@ en:
       role: "Role"
       action: "Actions"
       add_member: "Add members"
+      add_phase: "Add phases"
       add: "Add"
       add_member_input: "Add new member to project"
       nomatch: "There isn't this user in system. Add them to project"
@@ -45,6 +46,8 @@ en:
       update_info: "Change Information"
       status: "Status"
       change: "Change"
+      phase: "Phases"
+      information: "Information"
     delete:
       confirm: "You are sure?"
       success: "Deleted"

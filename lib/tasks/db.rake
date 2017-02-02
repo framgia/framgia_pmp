@@ -57,8 +57,10 @@ namespace :db do
     end
 
     puts "Chose phase for project"
-    Fabricate :project_phase, project_id: project.id, phase_id: 2
-    Fabricate :project_phase, project_id: project.id, phase_id: 3
+    Phase.all.each do |phase|
+      Fabricate :project_phase, project_id: project.id, phase_id: phase.id,
+        phase_name: phase.phase_name
+    end
 
     puts "Creating tasks for the first sprint of project 1"
     Sprint.first.assignees.each do |assignee|
