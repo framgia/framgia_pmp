@@ -32,7 +32,7 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require bootstrap-datepicker
 //= require users
-//= sprints
+//= require sprints
 
 $(document).on('page:change', function(){
   $('#create_sprint').on('shown.bs.modal', function(){
