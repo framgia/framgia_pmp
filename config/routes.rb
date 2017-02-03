@@ -50,4 +50,5 @@ Rails.application.routes.draw do
   resources :synchronizes, only: [:index, :create]
   resources :users, except: [:new, :create]
   resources :invite_users
+  resources :filter_datas, only: [:index, :create]
 end

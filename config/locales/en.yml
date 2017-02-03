@@ -246,3 +246,12 @@ en:
     estimated_story: "Estimated Story"
     burned_story: "Burned Story"
     estimated_task: "Estimated Task"
+  time: &datetime
+    formats:
+      default: "%Y/%m/%d"
+      short: "%y/%m/%d"
+      year: "%d/%m/%Y"
+      month_year: "%m/%Y"
+      year_month: "%Y/%m"
+      datetime: "%Y-%m-%d %I:%M %p"
+      times: "%H:%M:%S"

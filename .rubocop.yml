@@ -254,7 +254,7 @@ Style/HashSyntax:
     - hash_rockets
 
 Style/IfUnlessModifier:
-  MaxLineLength: 80
+  MaxLineLength: 120
 
 # Checks the indentation of the first key in a hash literal.
 Style/IndentHash:
@@ -277,7 +277,7 @@ Style/LambdaCall:
     - braces
 
 Metrics/LineLength:
-  Max: 80
+  Max: 120
   AllowURI: true
   Exclude:
     - config/routes.rb
@@ -474,7 +474,7 @@ Style/VariableName:
     - camelCase
 
 Style/WhileUntilModifier:
-  MaxLineLength: 80
+  MaxLineLength: 120
 
 Style/WordArray:
   MinSize: 0

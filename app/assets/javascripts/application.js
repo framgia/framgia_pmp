@@ -32,6 +32,7 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require bootstrap-datepicker
 //= require users
+//= require table_config
 //= sprints
 
 $(document).on('page:change', function(){

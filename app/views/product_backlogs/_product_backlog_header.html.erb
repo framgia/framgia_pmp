@@ -1,0 +1,111 @@
+<div class="fixedTitle">
+  <div class="tbody">
+    <div class="trow header">
+      <div class="tcell stt">#</div>
+      <div class="tcell name display_name title">
+        Trainee name
+        <%= link_to filter_datas_path(type: :employee_name, filter_type: :evaluations),
+          remote: true,
+          class: "open-select",
+          data: {name: "f-employee_name"} do %>
+          <i class="fa ic ic-filter employee_name"></i>
+        <% end %>
+      </div>
+      <div class="clear-both">
+        <div class="side-bar">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="fixedTable-header">
+  <div id="table-header" class="scroll-table">
+    <div class="tbody">
+      <div class="trow header">
+        <div class="tcell trainee_type category_name title">
+          trainee type
+          <%= link_to filter_datas_path(type: :category, filter_type: :evaluations),
+            remote: true,
+            class: "open-select",
+            data: {name: "f-category"} do %>
+            <i class="fa ic ic-filter category"></i>
+          <% end %>
+        </div>
+        <div class="tcell location groups_id title">
+          Location
+          <%= link_to filter_datas_path(type: :divisions, filter_type: :evaluations),
+            remote: true,
+            class: "open-select",
+            data: {name: "f-divisions"} do %>
+            <i class="fa ic ic-filter toggle-button-division divisions"></i>
+          <% end %>
+        </div>
+        <div class="tcell status title">
+          Status
+          <%= link_to filter_datas_path(type: :join_date, filter_type: :evaluations),
+            remote: true,
+            class: "open-select",
+            data: {name: "f-join_date"} do %>
+            <i class="fa ic ic-filter join_date"></i>
+          <% end %>
+        </div>
+        <div class="tcell university title">
+          University
+          <%= link_to filter_datas_path(type: :resigned_date, filter_type: :evaluations),
+            remote: true,
+            class: "open-select",
+            data: {name: "f-resigned_date"} do %>
+            <i class="fa ic ic-filter resigned_date"></i>
+          <% end %>
+        </div>
+        <div class="tcell graduation skill_name skills_id title">
+          Graduate
+          <%= link_to filter_datas_path(type: :skill_name, filter_type: :evaluations),
+            remote: true,
+            class: "open-select",
+            data: {name: "f-skill_name"} do %>
+            <i class="fa ic ic-filter skill_name"></i>
+          <% end %>
+        </div>
+        <div class="tcell programming_language rank title">
+          Language
+          <%= link_to filter_datas_path(type: "rank", filter_type: :evaluations),
+            remote: true,
+            class: "open-select",
+            data: {name: "f-rank"} do %>
+            <i class="fa ic ic-filter rank"></i>
+          <% end %>
+        </div>
+        <div class="tcell start_training_date title">
+          Start training
+        </div>
+        <div class="tcell leave_date title">
+          Leave date
+        </div>
+        <div class="tcell finish_training_date title">
+          Finish traning
+        </div>
+        <div class="tcell ready_for_project title">
+          Ready To Project
+        </div>
+        <div class="tcell contract_date title">
+          Contract Date
+        </div>
+        <div class="tcell working_day title">
+          Working Day
+        </div>
+        <div class="tcell trainer title">
+          Trainer
+        </div>
+        <div class="tcell current_progress title">
+          Progress
+        </div>
+        <div class="tcell note title">
+          Note
+        </div>
+        <div class="tcell action"></div>
+      </div>
+    </div>
+  </div>
+</header

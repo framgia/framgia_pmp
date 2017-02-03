@@ -5,6 +5,8 @@ class ProductBacklogsController < ApplicationController
   def index
     @sprints = @project.sprints
     @product_backlogs = @project.product_backlogs
+    @users = User.all
+    @training_management_presenters = ProductBacklogPresenter.new(@users).render
   end
 
   def create

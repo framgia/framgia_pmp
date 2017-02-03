@@ -1,0 +1,621 @@
+@import "common/variables/color";
+@import "mixin";
+
+#product_backlogs {
+  @include customize-scrollbar;
+
+  h3.title {
+    color: red;
+  }
+  .fixedTable-body {
+    height: auto;
+  }
+
+  .tcell {
+    &.stt {
+      min-width: 35px;
+      max-width: 35px;
+    }
+
+    &.trainee_type {
+      text-align: left;
+      text-transform: capitalize;
+      border-left: 0;
+      @include ellipsis(120px);
+      position: relative;
+    }
+
+    &.leave_date, &.contract_date {
+      min-width: 100px;
+      max-width: 100px;
+    }
+
+    &.empty {
+      min-width: 2700px;
+      max-width: 2700px;
+      border:0;
+      height:0px;
+    }
+
+    &.location {
+      min-width: 80px;
+      max-width: 80px;
+    }
+
+    &.action {
+      min-width: 60px;
+      max-width: 60px;
+    }
+
+    &.status {
+      min-width: 85px;
+      max-width: 85px;
+      &.title, &.list-title{
+        white-space: normal;
+      }
+    }
+
+    &.university {
+      min-width: 370px;
+      max-width: 370px;
+      position: relative;
+    }
+
+    &.graduation {
+      min-width: 130px;
+      max-width: 130px;
+      position: relative;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    &.current_progress, &.note {
+      min-width: 300px;
+      max-width: 300px;
+      position: relative;
+    }
+
+    &.programming_language {
+      min-width: 120px;
+      max-width: 120px;
+      position: relative;
+    }
+
+    &.start_training_date, &.finish_training_date, &.trainer {
+      min-width: 200px;
+      max-width: 200px;
+      position: relative;
+    }
+
+    &.ready_for_project {
+      min-width: 250px;
+      max-width: 250px;
+    }
+
+    &.working_day {
+      min-width: 220px;
+      max-width: 220px;
+    }
+
+    &.name {
+      min-width: 210px;
+      max-width: 210px;
+    }
+
+    &.none {
+      display: table-cell;
+      border-right: none;
+      border-top: 2px solid #ccc;
+    }
+  }
+}
+
+#statistic-division-modal {
+  .modal-dialog {
+    min-width: 70%
+  }
+
+  .modal-body {
+    height: 500px;
+    .tab-content{
+      margin-top: 10px;
+    }
+
+    .tbl {
+      width: 100%;
+      .tcell {
+        width: 50%;
+      }
+    }
+  }
+}
+
+a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+#resigned-date {
+  overflow: hidden;
+}
+
+#min_value, #max_value{
+  text-align: left;
+  border-radius: 3px;
+}
+
+.pane-body > .tbl .tbl-row .tcell{
+  padding-right: 10px;
+}
+
+// new
+ .hidden {
+   visibility: hidden;
+ }
+
+ .tcell {
+   display: table-cell;
+   border-right: 1px solid #ccc;
+   border-top: 1px solid #ccc;
+   padding: 0px 5px;
+
+   &.actions {
+     min-width: 135px;
+     width: 135px;
+     max-width: 150px;
+   }
+ }
+
+ .tbl.training_managements{
+   .tbl-row {
+     .tcell {
+       width: calc(100%/11);
+
+       &.actions {
+         width: calc(100%/11) !important;
+         min-width: 0px !important
+       }
+     }
+   }
+ }
+
+ .tbl {
+   display: table;
+   border: 1px solid #ccc;
+   border-top: 0px;
+   width: 100%;
+   margin-bottom: 0px;
+
+   .tbl-row {
+     display: table-row;
+
+     &.header {
+       background-color: #F5F5F5;
+       height: 30px;
+       min-height: 30px;
+       max-height: 30px;
+       font-weight: bold;
+       .tcell {
+         border-bottom: 1px solid #ccc;
+       }
+     }
+
+     &:last-child {
+       .tcell {
+         border-bottom: none;
+       }
+     }
+   }
+ }
+
+ .message-dont-have-record {
+   margin-top: 20px;
+ }
+
+ .clear-both {
+   clear: both;
+ }
+
+ .fixedTable-header, .fixedTitle {
+   font-weight: bold;
+ }
+
+ #link {
+   width: 700px;
+ }
+
+ textarea {
+   resize: none;
+ }
+
+ .highlight {
+   background: rgba(160, 195, 255, 0.5);
+ }
+
+ .high-light, .highlight-click {
+   background: #FEFFB7;
+ }
+
+ .scrollbar {
+   position: absolute;
+   top: 61px;
+   right: 0px;
+   z-index: 2;
+   width: 10px;
+   overflow-y: auto;
+   overflow-x: hidden;
+   background-color: #FFF;
+ }
+
+ .scrollbarH {
+   bottom: 0px;
+   margin-left: 245px;
+   z-index: 2;
+   height: 15px;
+   overflow-x: auto;
+   overflow-y: hidden;
+   background-color: #FFF;
+ }
+
+ .evaluation.options.filter {
+   float: right;
+   margin-top: -36px;
+ }
+
+ .division-select {
+   height: 26px;
+ }
+
+ .division-submit {
+   width: 52px;
+   height: 26px;
+ }
+
+ .btn-filter-off, .btn-filter-off:focus {
+   background: no-repeat url("/assets/filter_sprite.png") -19px -2289px;
+   border-radius: 2px !important;
+ }
+
+ .btn-filter-on, .btn-filter-on:focus {
+   color: #333;
+   background: #e6e6e6 url("/assets/filter_sprite.png") 2px -63px;
+   border-color: #adadad;
+   box-shadow: inset 0px 0px 0.1px rgba(0, 0, 0, 0.5), inset 0px 0px 6px rgba(157, 157, 157, 0.5);
+   border-radius: 2px !important;
+ }
+
+ .ic-filter-off {
+   pointer-events: none;
+   background: no-repeat url("/assets/filter.png") -247px -124px !important;
+ }
+
+ #filter-loading {
+   float: right;
+   font-size: 15px;
+   margin-right: 5px;
+   color: #EB3D3D;
+ }
+
+ .btn-filter-onoff-project {
+   margin-top: -5px;
+ }
+
+ .filter-loading-offset-top, {
+   margin-top: 8px;
+ }
+
+ .chart-link-offset-top {
+   margin-top: 10px;
+ }
+
+ #clone_date {
+   text-align: center;
+ }
+
+ .divider {
+   margin-top: 10px;
+ }
+
+ #custom-find-in-page {
+   position: fixed;
+   top: 65px;
+   right: 50px;
+   display: none;
+   .navbar-form{
+     margin: 10px;
+   }
+
+   .counter-form{
+     position: relative;
+     display: inline;
+   }
+
+   #keywords{
+     height:30px;
+     padding-right: 10px;
+   }
+
+   #counter{
+     position: absolute;
+     right: 0px;
+     z-index: 99;
+     padding: 7px 7px;
+   }
+
+   #navigate{
+     display: inline;
+   }
+
+   #prev, #next{
+     margin-bottom: 10px;
+     height: 30px;
+     width: 25px;
+     .glyphicon{
+       margin-left: -6px;
+     }
+   }
+
+   #cancel{
+     top: -5px;
+     height: 30px;
+     width: 25px;
+     padding: 0px 5px;
+     font-weight: bold;
+   }
+ }
+
+ .select-project{
+   position: absolute;
+   right: 7px;
+   top: 20px;
+   padding-top: 1px;
+   padding-bottom: 1px;
+ }
+
+ .btn-project {
+   font-weight: normal;
+   color: #000000;
+   text-decoration:none;
+   width: 120px;
+ }
+
+ .fa {
+   font: normal normal normal 14px/1 FontAwesome, sans-serif;
+ }
+
+ .tbl-wrapper{
+   width: 100%;
+   max-height: 350px;
+   overflow-y: auto;
+   .tcell {
+     padding: 0px 16px!important;
+   }
+ }
+
+ .filter-right-arow {
+   &:before {
+     left: auto;
+     right: 9px;
+   }
+
+   &:after {
+     left: auto;
+     right: 10px;
+   }
+ }
+
+ #fixed-bottom-sidebar, #fixed-bottom-body {
+   max-height:22px;
+   min-height: 22px;
+     font-weight: normal;
+   .scroll-month {
+     height: 22px;
+     .tcell {
+       height: 22px;
+       text-align: right;
+     }
+   }
+ }
+
+ .fixedTable-body .tcell.check  {
+   border-right: 2px solid #ccc;
+ }
+
+ .table {
+   width: 100%;
+   border: 1px solid #ccc;
+   margin-bottom: 5px;
+   position: relative;
+ }
+
+ .thead {
+   display: table-header-group;
+ }
+
+ .sub-header {
+   display: table-row;
+   border-top: 1px solid #ccc;
+   background: #F5F5F5;
+   height: 30px;
+   cursor: pointer;
+ }
+
+ .trow {
+   display: table-row;
+   padding: 2px;
+ }
+
+ .tbody {
+   display: table-row-group;
+   border: 0;
+ }
+
+ .fixedTitle {
+   width: 245px;
+   height: 61px;
+   max-height: 61px;
+   min-height: 61px;
+   overflow: hidden;
+   background-color: #F5F5F5;
+   border-bottom: 1px solid #CCC;
+   border-right: 2px solid #CCC;
+   float: left;
+   .tcell {
+     border-top: none;
+   }
+   .trow.header {
+     height: 61px;
+   }
+ }
+
+ .fixedTable-header {
+   width: auto;
+   height: 61px;
+   max-height: 61px;
+   min-height: 61px;
+   overflow: hidden;
+   background-color: #F5F5F5;
+   border-bottom: 1px solid #CCC;
+   margin-right: 12px;
+   > .tcell {
+     height: 61px;
+     max-height: 61px;
+     min-height: 61px;
+   }
+
+   .tcell {
+     border-top: none;
+     &.month {
+       min-width: 75px;
+       max-width: 75px;
+       width: 75px;
+       border: none;
+       vertical-align: middle;
+       height: 30px;
+     }
+   }
+
+   .tcell-month {
+     display: table-cell;
+     border-right: 0;
+     height: 61px;
+     max-height: 61px;
+     min-height: 61px;
+     .tcell {
+       height: 30px;
+       min-height: 30px;
+       max-height: 30px;
+     }
+   }
+
+   .scroll-month {
+     height: 61px;
+     > .tcell {
+       border-top: none;
+       height: 61px;
+     }
+
+     .tbody:last-child .tcell  {
+       border-top: 1px solid #ccc;
+     }
+
+     .trow.header .tcell:last-child {
+       border-right: 2px solid #ccc;
+     }
+   }
+ }
+
+ .fixedTable-sidebar {
+   overflow: hidden;
+   width: 245px;
+   height: auto;
+   border-right: 2px solid #CCC;
+   float: left;
+ }
+
+ .fixedTable-body {
+   overflow: hidden;
+   width: auto;
+   border-left: 0;
+   margin-right: 12px;
+ }
+
+ #parent{
+   height: 100%;
+   width: 245px;
+   overflow-y: hidden;
+   overflow-x: hidden;
+ }
+
+ #parent::-webkit-scrollbar {
+   display: none;
+ }
+
+ #child {
+   width: 245px;
+   height: auto;
+   overflow: hidden;
+ }
+
+ .filters {
+   input {
+     padding-right: 6px;
+   }
+
+   input[id*=date] {
+     border-radius: 3px;
+   }
+ }
+
+ .orange-highlight-color {
+   background-color: #faffbd;
+ }
+
+ #change-color {
+   width: 100%;
+ }
+
+ #number-records-month {
+   position: absolute;
+   top: 7px;
+   left: -80px;
+   width: 120px;
+ }
+
+ .assign-project {
+   padding-top: 5px;
+   font-size: 12px;
+ }
+
+ .monthly-statistic {
+   width: 90px;
+   height: 20px;
+   padding: 0px;
+   float: inherit;
+   font-size: 12px;
+   font-weight: bold;
+ }
+
+ .pop-up {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+ }
+
+ #btn-filter-on-off {
+   float: right;
+   cursor: pointer;
+   width: 15px;
+   height: 28px;
+ }
+
+ .bg_right {
+   position: absolute;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   width: 12px;
+   border-left: 1px solid #ccc;
+   background: #fff;
+ }

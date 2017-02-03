@@ -1,4 +1,4 @@
-<div class="container" id="product_backlogs"
+<!-- <div class="container" id="product_backlogs"
   data-update-backlog="<%= can? :update, @product_backlogs.first %>">
   <div class="product_backlog">
     <%= form_for :product_backlog, html: {id: "product_backlog_form"}  do |f| %>
@@ -55,6 +55,35 @@
     <div class="row">
       <%= render "shared/category_tab", project: @project,
       active_tab: Settings.tabs.project_backlog, f: nil %>
+    </div>
+  </div>
+</div>
+ -->
+
+<div class="container" id="product_backlogs">
+   <div id="main" class="clearfix">
+    <div id="content">
+      <div id="<%= controller_name %>">
+        <h3 class="title">
+          All trainee
+
+          <span id="filter-loading" class="filter-loading-offset-top"></span>
+        </h3>
+
+        <div class="table">
+          <%= render "product_backlog_header" %>
+          <%#= render "evaluation_sidebar" %>
+          <%#= render "evaluation_body" %>
+          <%= @training_management_presenters.html_safe %>
+        </div>
+
+
+
+        <div class="list-filters">
+          <div class="filter-form">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
