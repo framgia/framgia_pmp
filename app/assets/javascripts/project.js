@@ -144,3 +144,24 @@ function resetPhaseIndex(){
     $(this).find('.index').html(index + 1);
   });
 }
+
+$(document).on('page:change', function(){
+  $('#closed').click(function() {
+    if ($('#closed').is(':checked')) {
+      $(this).val('closed');
+      var status = 2;
+    } else {
+      $(this).val('not_closed');
+    }
+    $.ajax({
+      url: 'api/projects',
+      type: 'get',
+      data: {status: status},
+      dataType: 'json',
+      success: function(data){
+        $('table#tbl-list-project tbody').empty();
+        $('table#tbl-list-project tbody').append(data.content);
+      }
+    });
+  });
+});
