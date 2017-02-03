@@ -159,3 +159,27 @@
   background-color: $header-blue;
   color: $white;
 }
+
+#input_wpd {
+  cursor: pointer;
+  color: $white;
+}
+
+#input_performance_dialog {
+  padding: 5px;
+  margin: 0 5px;
+  color: black;
+  text-align: left;
+  font-weight: bold;
+}
+
+#input_wpd .dialog {
+  position:absolute;
+  background-color: $light-pink;
+  padding: 5px 10px;
+  z-index:10;
+  width: 350px;
+  height:auto;
+  border: 1px solid $boder-grey;
+  border-radius: 10px;
+}

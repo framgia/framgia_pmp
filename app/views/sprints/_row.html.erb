@@ -1,6 +1,7 @@
 <tr class="activity_<%= activity_builder.object.id %> <%= type %>"
   id="activity_<%= activity_builder.object.id %>" data-row-index="<%= row %>">
-  <td class="index" data-task="<%= activity_builder.object.id %>">
+  <td class="index" data-task="<%= activity_builder.object.id %>"
+      data-current-user="<%= current_user.id %>">
     <div class="text-center"><%= row + 1 %></div>
   </td>
 

@@ -106,7 +106,6 @@ function getActivitiesOfUser(){
 function checkWorkPerformances(){
   var master_sprint_id = $('#work_performance_master_sprint_id').val();
   var task_id = $('#work_performance_task_id').val();
-  var user_id = $('#work_performance_user_id').val();
   var sprint_id = $('#work_performance_sprint_id').val();
   var phase_id = $('#work_performance_phase_id').val();
   if (sprint_id){
@@ -116,7 +115,6 @@ function checkWorkPerformances(){
       data: {
         master_sprint_id: master_sprint_id,
         task_id: task_id,
-        user_id: user_id,
         sprint_id: sprint_id,
         phase_id: phase_id
       },

@@ -1,5 +1,28 @@
-<div id="dialog" class="dialog dialog-hidden">
-  <div id="delete-activity" class="delete-activity" data-activity="<%= task.id %>">
-    <%= t "delete.task" %>
+<div id="input_performance_dialog" class="dialog dialog-hidden">
+  <div id="create_performance" class="create_performance" data-activity="<%= task.id %>">
+    <h4><%= t "work_performances.dialog_title" %></h4>
+    <br>
+    <%= form_for [sprint.project, sprint, work_performance],
+        html: {id: "form-input-wpd", data: {project: sprint.project.id}} do |f| %>
+      <%= f.hidden_field :sprint_id, value: sprint.id %>
+      <%= f.hidden_field :item_performance_id, value: sprint.item_performances.execute.first.id %>
+      <%= f.label :task %>:
+      <%= f.select :task_id, [[task.subject, task.id]], {selected: task.id},
+        {class: "form-control"} %>
+      <label><%= t "work_performances.day" %>: </label>
+      <%= f.select :master_sprint_id,
+        sprint.master_sprints.collect {|day| [("Day "+day.day.to_s+" - "+day.date.to_s(:long)), day.id]},
+        {selected: sprint.master_sprints.in_today.first.try(:id)}, {class: "form-control"} %>
+      <br>
+      <label><%= t "work_performances.phase" %>: </label>
+      <%= f.select :phase_id,
+        sprint.project_phases.collect {|phase| [phase.phase_name, phase.id]},
+        {}, {class: "form-control"} %>
+      <br>
+      <label><%= t "work_performances.value" %>: </label>
+      <%= f.number_field :performance_value, min: 0, class: "form-control" %>
+      <br>
+      <%= f.submit t("work_performances.save"), class: "btn btn-primary btn-info" %>
+    <% end %>
   </div>
 </div>

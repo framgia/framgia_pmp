@@ -27,11 +27,13 @@ class RowsController < ApplicationController
 
   def show
     @task = Task.find params[:id]
+    @work_performance = WorkPerformance.new
     if @task.present?
       respond_to do |format|
         format.html do
           render partial: "sprints/dialog",
-            locals: {task: @task}
+            locals: {task: @task, work_performance: @work_performance,
+              sprint: @task.sprint}
         end
       end
     end
