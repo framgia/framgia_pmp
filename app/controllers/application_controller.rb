@@ -23,3 +23,4 @@ class ApplicationController < ActionController::Base
     current_user.is_root? ? admin_projects_url : root_url
   end
 end
+dfsdf
