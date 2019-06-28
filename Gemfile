@@ -31,7 +31,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "rubocop", "~> 0.46.0", require: false
+  gem "rubocop"#, "~> 0.46.0", require: false
   gem "rubocop-checkstyle_formatter"
   gem "web-console", "~> 2.0"
   gem "spring"
